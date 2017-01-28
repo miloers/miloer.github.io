@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/10/09/hello-world/</loc>
+    
+    <lastmod>2017-01-28T05:34:48.006Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/share/index.html</loc>
     
     <lastmod>2017-01-28T05:05:14.000Z</lastmod>
@@ -52,13 +59,6 @@
   
   <url>
     <loc>http://yoursite.com/2016/11/16/js-this%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2017-01-28T03:34:44.148Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/01/28/hello-world/</loc>
     
     <lastmod>2017-01-28T03:34:44.148Z</lastmod>
     
