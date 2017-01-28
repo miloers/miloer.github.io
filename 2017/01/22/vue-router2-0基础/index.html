@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="vue vue-router," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Miloer の 闲言碎语" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近在踩vue的坑,这篇是关于vue-router基础的~~不过说实在的,也是再重复造轮子,vue-router官方的手册已经很全面了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-router2.0基础">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/vue-router2-0基础/index.html">
+<meta property="og:site_name" content="Miloer の 闲言碎语">
+<meta property="og:description" content="最近在踩vue的坑,这篇是关于vue-router基础的~~不过说实在的,也是再重复造轮子,vue-router官方的手册已经很全面了.">
+<meta property="og:updated_time" content="2017-01-28T03:34:44.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue-router2.0基础">
+<meta name="twitter:description" content="最近在踩vue的坑,这篇是关于vue-router基础的~~不过说实在的,也是再重复造轮子,vue-router官方的手册已经很全面了.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/22/vue-router2-0基础/"/>
+
+
+
+
+
+  <title> vue-router2.0基础 | Miloer の 闲言碎语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miloer の 闲言碎语</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/22/vue-router2-0基础/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Miloer">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://wss.globelinkcfs.com/wechat/export_lcl/old/img/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Miloer の 闲言碎语">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Miloer の 闲言碎语" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vue-router2.0基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-22T15:23:51+08:00">
+                2017-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在踩vue的坑,这篇是关于vue-router基础的~~<br>不过说实在的,也是再重复造轮子,vue-router官方的手册已经很全面了.<br><a id="more"></a><!--more--></p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>用Vue+vue-router 很方便的就能构建单页应用，依靠vue-router把各个组件联系在一起。</p>
+<h4 id="最基础的vue-router用法"><a href="#最基础的vue-router用法" class="headerlink" title="最基础的vue-router用法"></a>最基础的vue-router用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue-router/dist/vue-router.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;app&quot;&gt;</div><div class="line">        &lt;h1&gt;hello world!&lt;/h1&gt;</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;!--它默认会被渲染成一个带有链接的a标签，通过to属性指定链接地址--&gt;</div><div class="line">            &lt;router-link to=&quot;/foo&quot;&gt;Go to foo&lt;/router-link&gt;</div><div class="line">            &lt;router-link to=&quot;/bar&quot;&gt;Go to bar&lt;/router-link&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div style=&quot;color: darkcyan;&quot;&gt;</div><div class="line">            &lt;!-- 用于渲染匹配的组件。--&gt;</div><div class="line">            &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;script&gt;</div><div class="line">        /*定义组件*/</div><div class="line">        const Foo = &#123;</div><div class="line">            template: &apos;&lt;div&gt;foo template!&lt;/div&gt;&apos;</div><div class="line">        &#125;</div><div class="line">        const Bar = &#123;</div><div class="line">                template: &apos;&lt;div&gt;Bar template!&lt;/div&gt;&apos;</div><div class="line">            &#125;</div><div class="line">            //绑定组件到路由，设置路径</div><div class="line">        const routes = [&#123;</div><div class="line">                path: &apos;/foo&apos;,</div><div class="line">                component: Foo</div><div class="line">            &#125;, &#123;</div><div class="line">                path: &apos;/bar&apos;,</div><div class="line">                component: Bar</div><div class="line">            &#125;]</div><div class="line">            //创建路由实例</div><div class="line">        const router = new VueRouter(&#123;</div><div class="line">                routes: routes</div><div class="line">            &#125;)</div><div class="line">            //挂载根实例</div><div class="line">        const app = new Vue(&#123;</div><div class="line">            router</div><div class="line">        &#125;).$mount(&apos;#app&apos;)</div><div class="line">    &lt;/script&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p><code>&lt;router-link&gt;</code> 是一个组件，它默认会被渲染成一个带有链接的<code>a</code>标签，通过to属性指定链接地址。当点击对应路由的链接时，为该链接自动添加<code>router-link-active</code>样式<br>来看看它的属性值，</p>
+<h5 id="to"><a href="#to" class="headerlink" title="to"></a>to</h5><p>表示目标路由的链接。这是一个必须的属性值，当被点击后，跳转到对应的目标对象。</p>
+<h5 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h5><p>布尔类型，默认值为false.设置replace，点击后，导航不会留下history记录。从路径上相当于无痕浏览吧，在浏览器内点击返回时，没有返回目标。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link to=&quot;/foo&quot; replace&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure>
+<h5 id="append"><a href="#append" class="headerlink" title="append"></a>append</h5><p>布尔类型，默认值为false。路径叠加。从路径a跳转到路径b，如果配置了append，路径变成 /a/b, 相反，路径为/b。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link to=&quot;/foo&quot; append&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure></p>
+<h5 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h5><p>字符串类型，看名字就知道是渲染的标签嘛，如果不配置tag属性，则默认渲染为<code>a</code>标签，<br>否则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-link to=&quot;/foo&quot;  tag=&quot;li&quot;&gt;&lt;/router-link&gt;</div></pre></td></tr></table></figure></p>
+<p>将渲染为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;li&gt;&lt;/li&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="动态路由匹配"><a href="#动态路由匹配" class="headerlink" title="动态路由匹配"></a>动态路由匹配</h4><p>使用动态路径参数来映射不同的参数。我理解就是不同的人持着自己的身份ID证件访问同一个组件，来获得属于自己的身份ID。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;动态匹配路由&lt;/title&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue-router/dist/vue-router.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;app&quot;&gt;</div><div class="line">        &lt;h1&gt;hello world!&lt;/h1&gt;</div><div class="line">        &lt;div&gt;</div><div class="line">            &lt;router-link to=&quot;/user/foo/post/111&quot;&gt;Go to foo&lt;/router-link&gt;</div><div class="line">            &lt;router-link to=&quot;/user/bar/post/222&quot;&gt;Go to bar&lt;/router-link&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div style=&quot;color: darkcyan;&quot;&gt;</div><div class="line">            &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;script&gt;</div><div class="line">        /*定义组件*/</div><div class="line">        const User = &#123;</div><div class="line">                template: &apos;&lt;div&gt;User&#123;&#123;$route.params.id&#125;&#125;,post&#123;&#123;$route.params.postid&#125;&#125;&lt;/div&gt;&apos;,</div><div class="line">            &#125;</div><div class="line">            //绑定组件到路由，设置路径</div><div class="line"></div><div class="line">        const routes = [&#123;</div><div class="line">            path: &apos;/user/:id/post/:postid&apos;,</div><div class="line">            component: User</div><div class="line">        &#125;]</div><div class="line"></div><div class="line">        const router = new VueRouter(&#123;</div><div class="line">            routes</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        const app = new Vue(&#123;</div><div class="line">            router</div><div class="line">        &#125;).$mount(&apos;#app&apos;)</div><div class="line">    &lt;/script&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>动态的路径属性，以<code>：</code>标记。当路由被匹配时，参数值设置到<code>this.$route.params</code>，可以在组件内使用。<br>在项目里，路由可设置多个路径参数，对应的值都会设置到$route.params中。还可以自定义匹配正则。<br><a href="https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js" target="_blank" rel="external">这里有个例子怎么匹配正则。</a></p>
+<h4 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h4><p>我觉得就是一个路由下，子路由页面之间的切换。<br>定义路由的这个路径我老是写错，浏览器也不报错，很是郁闷。我记得前些日子写Vue单页demo的时候，第一次正常访问的时候，从父组件里点子路由组件，可以访问子路由页面，在不刷新页面的情况下，再次点击的时候，子路由页面怎么也渲染不出来。现在估计就是路径写错了吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;嵌套路由&lt;/title&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/vue-router/dist/vue-router.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;app&quot;&gt;</div><div class="line">        &lt;router-link to=&quot;/user/foo&quot;&gt;foo&lt;/router-link&gt;</div><div class="line">        &lt;router-link to=&quot;/user/foo/profile&quot;&gt;profile&lt;/router-link&gt;</div><div class="line">        &lt;router-link to=&quot;/user/foo/posts&quot;&gt;posts&lt;/router-link&gt;</div><div class="line">        &lt;hr&gt;</div><div class="line">        &lt;router-view&gt;&lt;/router-view&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        const User = &#123;</div><div class="line">            template: `     &lt;div class=&quot;user&quot;&gt;       &lt;h2&gt;User &#123;&#123; $route.params.id &#125;&#125;&lt;/h2&gt;       &lt;router-view&gt;&lt;/router-view&gt;     &lt;/div&gt;   `</div><div class="line">        &#125;</div><div class="line">        const home = &#123;</div><div class="line">            template: &apos;&lt;div&gt;Home&lt;/div&gt;&apos;</div><div class="line">        &#125;</div><div class="line">        const profile = &#123;</div><div class="line">            template: &apos;&lt;div&gt;Profile&lt;/div&gt;&apos;</div><div class="line">        &#125;</div><div class="line">        const posts = &#123;</div><div class="line">            template: &apos;&lt;div&gt;Posts&lt;/div&gt;&apos;</div><div class="line">        &#125;</div><div class="line">        const routes = [&#123;</div><div class="line">            path: &apos;/user/:id&apos;,</div><div class="line">            component: User,</div><div class="line">            children: [&#123;</div><div class="line">                path: &apos;&apos;,</div><div class="line">                component: home</div><div class="line">            &#125;, &#123;</div><div class="line">                path: &apos;profile&apos;,</div><div class="line">                component: profile</div><div class="line">            &#125;, &#123;</div><div class="line">                path: &apos;posts&apos;,</div><div class="line">                component: posts</div><div class="line">            &#125;]</div><div class="line">        &#125;]</div><div class="line"></div><div class="line">        const router = new VueRouter(&#123;</div><div class="line">            routes</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        const app = new Vue(&#123;</div><div class="line">            router</div><div class="line">        &#125;).$mount(&apos;#app&apos;)</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="编程试导航"><a href="#编程试导航" class="headerlink" title="编程试导航"></a>编程试导航</h4><p>类似于window.history的用法<br><code>router.go()</code><br><code>router.push()</code>，它就是用来导航到不同的链接，等同于<code>&lt;router-link to=&quot;&quot;&gt;&lt;/router-link&gt;</code>。<br>方法的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">router.push(&apos;home&apos;)</div><div class="line">router.push(&#123;path:&apos;home&apos;&#125;)</div><div class="line">router.push(&#123;name:&apos;user&apos;,params:&#123;userId:aa&#125;&#125;)</div><div class="line">//带参数的路由，/register?plan=private</div><div class="line">router.push(&#123;path:&apos;register&apos;,query:&#123;plan:&apos;private&apos;&#125;&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="命名试图"><a href="#命名试图" class="headerlink" title="命名试图"></a>命名试图</h4><p>一个页面下，展示多个同级的组件。这样增加了组件的灵活性和复用性。<br>需要注意的是需要在定义router-view的时候给它定义身份标示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;router-view name=&quot;footer&quot;&gt;&lt;/router-view&gt;</div></pre></td></tr></table></figure></p>
+<p>footer就是他的身份标示。如果name为空，则为default<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const routes = [&#123;</div><div class="line">	path:&apos;/user&apos;,</div><div class="line">	componetns:&#123;</div><div class="line">		default:main,</div><div class="line">		b:footer</div><div class="line"> &#125;</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>顾名思义，重定向就是我们访问页面a的时候，定向访问到了b页面。重定向的目标可以是路径，可以是个命名的路由，也可以是个方法。<a href="https://github.com/vuejs/vue-router/blob/next/examples/redirect/app.js" target="_blank" rel="external">可以参考这里。</a></p>
+<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4><p><a href="http://router.vuejs.org/zh-cn/" target="_blank" rel="external">参考文档。</a> </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue-vue-router/" rel="tag"># vue vue-router</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/26/分享一波面试题/" rel="next" title="分享一波面试题">
+                <i class="fa fa-chevron-left"></i> 分享一波面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/28/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://wss.globelinkcfs.com/wechat/export_lcl/old/img/avatar.jpg"
+               alt="Miloer" />
+          <p class="site-author-name" itemprop="name">Miloer</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离高级趣味的人.</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最基础的vue-router用法"><span class="nav-number">2.</span> <span class="nav-text">最基础的vue-router用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#to"><span class="nav-number">2.1.</span> <span class="nav-text">to</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#replace"><span class="nav-number">2.2.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#append"><span class="nav-number">2.3.</span> <span class="nav-text">append</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tag"><span class="nav-number">2.4.</span> <span class="nav-text">tag</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态路由匹配"><span class="nav-number">3.</span> <span class="nav-text">动态路由匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套路由"><span class="nav-number">4.</span> <span class="nav-text">嵌套路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编程试导航"><span class="nav-number">5.</span> <span class="nav-text">编程试导航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名试图"><span class="nav-number">6.</span> <span class="nav-text">命名试图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">7.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文档"><span class="nav-number">8.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Miloer</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
