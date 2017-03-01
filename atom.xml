@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-01T12:23:58.725Z</updated>
+  <updated>2017-03-01T12:29:18.509Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2017/03/01/Vue%E7%9A%84%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
     <id>http://yoursite.com/2017/03/01/Vue的初体验/</id>
     <published>2017-03-01T12:19:15.000Z</published>
-    <updated>2017-03-01T12:23:58.725Z</updated>
+    <updated>2017-03-01T12:29:18.509Z</updated>
     
-    <content type="html"><![CDATA[<p>这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。<br>我对Vue理解的也不是很深，也是在摸索中了解阶段。<br><img src="http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg" alt="alt text"><br><a id="more"></a><!--more--></p>
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg" alt="alt text"><br>这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。<br>我对Vue理解的也不是很深，也是在摸索中了解阶段。<br><a id="more"></a><!--more--></p>
 <h4 id="阵前"><a href="#阵前" class="headerlink" title="阵前"></a>阵前</h4><p>年后一直在满足上面提古怪的需求项目。（笑哭）<br>为什么说古怪？因为做完了，然后又被做掉了。（无奈）<br>好啦，为了检验Vue的储备成果，准备抽空把以前写的一个小模块，用Vue重构一遍。    </p>
 <h4 id="阵中"><a href="#阵中" class="headerlink" title="阵中"></a>阵中</h4><p>这并不是一篇Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。<br>我对Vue理解的也不是很深，也是在摸索中了解阶段。<br>如果说的不对，欢迎指正，共同进步。<br>如果想看教程文，掘金社区有很多分享文章，你可以作为知识储备，慕课网也有几个关于Vue入门的视屏，有兴趣可以去看看，应该也是最近更新的。</p>
 <h5 id="阵前准备"><a href="#阵前准备" class="headerlink" title="阵前准备"></a>阵前准备</h5><p>webpack   vue-cli  vue   vue-resource  vue-router</p>
@@ -54,7 +54,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。&lt;br&gt;我对Vue理解的也不是很深，也是在摸索中了解阶段。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。&lt;br&gt;我对Vue理解的也不是很深，也是在摸索中了解阶段。&lt;br&gt;
     
     </summary>
     
