@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-14T12:41:21.228Z</updated>
+  <updated>2017-03-01T12:23:58.725Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue的初体验</title>
+    <link href="http://yoursite.com/2017/03/01/Vue%E7%9A%84%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>http://yoursite.com/2017/03/01/Vue的初体验/</id>
+    <published>2017-03-01T12:19:15.000Z</published>
+    <updated>2017-03-01T12:23:58.725Z</updated>
+    
+    <content type="html"><![CDATA[<p>这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。<br>我对Vue理解的也不是很深，也是在摸索中了解阶段。<br><img src="http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg" alt="alt text"><br><a id="more"></a><!--more--></p>
+<h4 id="阵前"><a href="#阵前" class="headerlink" title="阵前"></a>阵前</h4><p>年后一直在满足上面提古怪的需求项目。（笑哭）<br>为什么说古怪？因为做完了，然后又被做掉了。（无奈）<br>好啦，为了检验Vue的储备成果，准备抽空把以前写的一个小模块，用Vue重构一遍。    </p>
+<h4 id="阵中"><a href="#阵中" class="headerlink" title="阵中"></a>阵中</h4><p>这并不是一篇Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。<br>我对Vue理解的也不是很深，也是在摸索中了解阶段。<br>如果说的不对，欢迎指正，共同进步。<br>如果想看教程文，掘金社区有很多分享文章，你可以作为知识储备，慕课网也有几个关于Vue入门的视屏，有兴趣可以去看看，应该也是最近更新的。</p>
+<h5 id="阵前准备"><a href="#阵前准备" class="headerlink" title="阵前准备"></a>阵前准备</h5><p>webpack   vue-cli  vue   vue-resource  vue-router</p>
+<p>这里没有使用vuex，掌握的不是很清晰，我想下一个demo会把vuex加入进来。</p>
+<p>在这里尤大推荐用axios，我也没有使用，项目模块里只是简单的去跨域读取数据，使用方法应该很类似。<br>为什么官方不推荐使用 vue resource了。这是原话：</p>
+<blockquote>
+<p>最近团队讨论了一下，Ajax 本身跟 Vue 并没有什么需要特别整合的地方，使用 fetch polyfill 或是 axios、superagent 等等都可以起到同等的效果，vue-resource 提供的价值和其维护成本相比并不划算，所以决定在不久以后取消对 vue-resource 的官方推荐。已有的用户可以继续使用，但以后不再把 vue-resource 作为官方的 ajax 方案。这里可以去掉 vue-resource，文档也不必翻译了。</p>
+</blockquote>
+<p>看成色可能是性价比没有axios高。</p>
+<h5 id="扬马策鞭"><a href="#扬马策鞭" class="headerlink" title="扬马策鞭"></a>扬马策鞭</h5><p>使用脚手架创建项目后<br>npm install<br>在运行项目后，就来了敌人<br>我没有截图，我记得是找不到模块chalk。<br>从网上查了一下，自己分析可能是网速问题也可能是 npm 版本低导致的。<br>我从新又install，然后成功运行了。</p>
+<p>因为有以前写的代码，还有调用方法。我需要做的只是把代码结构用vue重构一遍，而且还只是其中的一个模块。<br>以前也有vue的知识储备，进展还算顺利，2个小时就完成。</p>
+<p>使用的是weui的css样式。<br>我直接在index页面引入CDN了，我想引入CDN比在自己模块中加载速度更快一些。</p>
+<p>接下来就是在main.js页面里 引入各种组件了</p>
+<p>引入 vue-resource，vue-router 还有自定义的css样式组件，以及组成页面的vue组件。<br>然后在这里定义路由，定义路径，定义匹配的路径，因为使用编程式导航，还要定义一个描述地址的对象,就像这样</p>
+<pre><code>{
+       path: &apos;/details&apos;,
+       component: details,
+       name: &apos;details&apos;
+}
+</code></pre><p>接着就在组件里写逻辑代码了<br>大体就是<br>传数，接数，跨域查询，展现数据。<br>balabala~<br>~~~<br>多余的逻辑代码我就不罗嗦了<br>就说说跨域这点</p>
+<p>我后端用的PHP，通过条件返回的JSON。<br>在项目里，以前跨域都使用jsonp的，这次使用了CORS<br>目前所有浏览器都支持，IE不能低于IE10。<br>与JSONP相比，JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。<br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">了解更多CORS。</a></p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>代码编译完以后，和以前的代码相比做了性能测试，移动端 使用3G(GOOD)网络做了对比（660ms）-（1s），感觉蛮不错的。</p>
+<p>本来我还写了一个loading组件，但是引入以后反倒慢了(凌乱)。</p>
+<p>我想应该是DOM重构时花费的时间吧（不确定）。</p>
+<p>单页应用减少了HTTP请求，使用webpack 压缩了组件，也减少了对外部的引用。性能自然而然有所提升。</p>
+<p>webpack也是个好东西，但我只会一些基本的应用，如果运用得当我想性能还会提升。<br>vue-cli也是让我这么方便的使用vue<br>感谢你们。</p>
+<p>以上。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这并不是一篇关于Vue教程文，我只是大体的说了一下我使用Vue的流程并做了一下梳理，以及自己乱七八糟的想法。&lt;br&gt;我对Vue理解的也不是很深，也是在摸索中了解阶段。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1914339-d5dc17a1a0ae1968.jpg&quot; alt=&quot;alt text&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>vue-router2.0基础</title>
