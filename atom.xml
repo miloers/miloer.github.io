@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-04T15:43:02.000Z</updated>
+  <updated>2017-03-04T15:56:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>读书笔记——高性能网站建设指南</title>
     <link href="http://yoursite.com/2017/03/04/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E6%8C%87%E5%8D%97/"/>
     <id>http://yoursite.com/2017/03/04/读书笔记——高性能网站建设指南/</id>
-    <published>2017-03-04T06:48:05.592Z</published>
-    <updated>2017-03-04T15:43:02.000Z</updated>
+    <published>2017-03-04T15:55:25.000Z</published>
+    <updated>2017-03-04T15:56:06.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>关于雅虎的14条军规。</p>
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3230776-3d33665bf3a7deef.jpg" alt=""><br>图片来源于简书App<br><a id="more"></a><!--more--></p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>关于雅虎的14条军规。</p>
 <p>主要记载学习笔记，以及对规则个人探究。</p>
 <h4 id="绪言"><a href="#绪言" class="headerlink" title="绪言"></a>绪言</h4><h5 id="跟踪Web页面性能"><a href="#跟踪Web页面性能" class="headerlink" title="跟踪Web页面性能"></a>跟踪Web页面性能</h5><p>我们首次访问网站时，缓存是空的。浏览器会解析HTML文档并下载网站需要的组件。用户需要大部分的时间来等待组件的下载，还有小部分时间解析HTML，脚本以及样式表上面。</p>
 <h5 id="性能黄金法则"><a href="#性能黄金法则" class="headerlink" title="性能黄金法则"></a>性能黄金法则</h5><p>我们访问页面时，只有10%-20%的最终用户的响应时间花在下载HTML文档上，其余的时间都是在下载页面所需的所有组件上。</p>
@@ -48,12 +49,12 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;p&gt;关于雅虎的14条军规。&lt;/p&gt;
-&lt;p&gt;主要记载学习笔记，以及对规则个人探究。&lt;/p&gt;
-&lt;h4 id=&quot;绪言&quot;&gt;&lt;a href=&quot;#绪言&quot; c
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3230776-3d33665bf3a7deef.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;图片来源于简书App&lt;br&gt;
     
     </summary>
     
+    
+      <category term="读书笔记 JavaScript" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-JavaScript/"/>
     
   </entry>
   
