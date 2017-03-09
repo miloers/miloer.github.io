@@ -93,7 +93,8 @@
 <meta property="og:site_name" content="Miloer の 闲言碎语">
 <meta property="og:description" content="图片来源于简书App">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3230776-3d33665bf3a7deef.jpg">
-<meta property="og:updated_time" content="2017-03-09T14:33:16.000Z">
+<meta property="og:image" content="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148907101885.png">
+<meta property="og:updated_time" content="2017-03-09T14:52:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记——高性能网站建设指南">
 <meta name="twitter:description" content="图片来源于简书App">
@@ -377,6 +378,10 @@
 <h5 id="修订文件名"><a href="#修订文件名" class="headerlink" title="修订文件名"></a>修订文件名</h5><p>如过我们将组件配置为让浏览器代理缓存，我们又需要新的样式了？怎么办呢？<br>这个我想即使没设置缓存的同学也遇到过吧，微信浏览器~~。<br>最简单的方法就是改文件名的版本号了。</p>
 <h4 id="规则四：压缩组件"><a href="#规则四：压缩组件" class="headerlink" title="规则四：压缩组件"></a>规则四：压缩组件</h4><p>从规则名就能想象出来我们需要干什么,压缩组件不就是为了减少数据传输的大小，从而提升前端性能吗。</p>
 <p>文中提到两种压缩格式gzip和deflate。推荐gzip的压缩格式。一：浏览器普遍支持；二：压缩效果相对更卓越。</p>
+<p>不过我刚才乱看时，又发现了个SDCH，然后科普了一下，粘过来：</p>
+<p>sdch是Shared Dictionary Compression over HTTP的缩写，即通过字典压缩算法对各个页面中相同的内容进行压缩，减少相同的内容的传输。如：一个网站中一般都是共同的头部和尾部，甚至一些侧边栏也是共同的。之前的方式每个页面打开的时候这些共同的信息都要重新加载，但使用SDCH压缩方式的话，那些共同的内容只用传输一次就可以了。</p>
+<p>sdch主要分为3个部分：首次请求，下载字典，之后的请求。</p>
+<p><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148907101885.png" alt=""></p>
 <p>gzip压缩是什么？<br>先把文件在服务器就行压缩，然后再进行传输文件，传输完毕后，浏览器会对文件进行解压缩。</p>
 <p>文中主要讲述了配置方面，以及性能方面的对比，美国十大流行的网站使用情况。<br>放几个官方压缩的实例。</p>
 <p><a href="http://stevesouders.com/hpws/nogzip.html?t=1489069735368" target="_blank" rel="external">无压缩的实例.</a></p>
