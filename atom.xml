@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-09T14:52:31.000Z</updated>
+  <updated>2017-03-18T03:10:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>读书笔记——高性能网站建设指南</title>
+    <title>叮！你的XX云大礼包以上线 /(ㄒoㄒ)/~~</title>
+    <link href="http://yoursite.com/2017/03/18/%E5%8F%AE%EF%BC%81%E4%BD%A0%E7%9A%84XX%E4%BA%91%E5%A4%A7%E7%A4%BC%E5%8C%85%E4%BB%A5%E4%B8%8A%E7%BA%BF-%E3%84%92o%E3%84%92/"/>
+    <id>http://yoursite.com/2017/03/18/叮！你的XX云大礼包以上线-ㄒoㄒ/</id>
+    <published>2017-03-18T03:09:22.000Z</published>
+    <updated>2017-03-18T03:10:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980140368.jpg" alt="脸红"><br>昨天下午，我正溜溜撸码的时候，我后面同事突然喊我，<br>“能不能帮我下个资源。。。“<br>我意味深长的看了他一眼，<br>说了声“好”。<br><a id="more"></a><!--more--></p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我同事在找了个云盘的资源，大文件下载必须安装云盘。<br>同事一脸怒气的安装了客户端。一副认命的表情。<br>安装完客户端，吐了一口浊气，选中资源，点击下载。<br>“80kb/s的速度，你要和我到天荒地老吗？”<br>一口老血喷到屏幕上。</p>
+<h4 id="使用WireShark"><a href="#使用WireShark" class="headerlink" title="使用WireShark"></a>使用WireShark</h4><p>从你的浏览器中搜索<strong>wireShark</strong>下载。</p>
+<p>我从公司装的是英文版，今天在自己本里下载是个中文版本的。</p>
+<p>下载完输入过滤器 tcp  port http</p>
+<p>如图<img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463273.png" alt="选择过滤器"></p>
+<p>然后选中你的网络链接。</p>
+<p>接着，在你XX网盘选中任务 开始下载，打开我们的工具开始抓。</p>
+<p>下载大约2-3秒就可以了。关闭下载，暂停抓包。</p>
+<p>我第一次抓然没有抓到，这个工具我真的不怎么会用。</p>
+<p>接着在抓，然后再protocol 协议列里找到HTTP，选中相关资源。找到了。</p>
+<p>如图<img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463394.png" alt="HTTP图"></p>
+<p>然后选中它，进去<br><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463312.png" alt="页面详细图"></p>
+<p>选中请求的URI，浏览器中访问。</p>
+<p>咦？我去，怎么个情况。怎么给我整个这个！！！！！<br><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463337.png" alt="报错图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;error_code&quot;:31045,&quot;error_msg&quot;:&quot;user not exists&quot;,&quot;request_id&quot;:1772649275372969519&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/bmiddle/6af89bc8gw1f8r9dxd3cnj20j60kmt9p.jpg" alt="崩溃"></p>
+<p>用户不存在，昨天还好好的，今天你个骚货就改了是吧！</p>
+<p>我当时的想法是访问时需要把cookie带上！</p>
+<p><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463394.png" alt="HTTP图"><br>还是在这，右键追踪流-&gt;TCP流。</p>
+<p>我找到了一个整个访问的地址链。</p>
+<p><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980463371.png" alt="地址"></p>
+<p>搞它，浏览器中访问，搞定下载！</p>
+<p><img src="http://cgewx.img48.wal8.com/img48/565731_20170206100721/14898060167.png" alt="民歌"></p>
+<p><strong>民歌，竟然是民歌。。</strong></p>
+<p>最后，你的益达还给你<br><img src="http://ww3.sinaimg.cn/bmiddle/9150e4e5gw1fbg1yrtcu4j20mp0qoq46.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://cgewx.img48.wal8.com/img48/565731_20170206100721/148980140368.jpg&quot; alt=&quot;脸红&quot;&gt;&lt;br&gt;昨天下午，我正溜溜撸码的时候，我后面同事突然喊我，&lt;br&gt;“能不能帮我下个资源。。。“&lt;br&gt;我意味深长的看了他一眼，&lt;br&gt;说了声“好”。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="学习 抓包" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0-%E6%8A%93%E5%8C%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书笔记：高性能网站建设指南（1）</title>
     <link href="http://yoursite.com/2017/03/04/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E6%8C%87%E5%8D%97/"/>
     <id>http://yoursite.com/2017/03/04/读书笔记——高性能网站建设指南/</id>
     <published>2017-03-04T15:55:25.000Z</published>
-    <updated>2017-03-09T14:52:31.000Z</updated>
+    <updated>2017-03-18T03:07:50.063Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3230776-3d33665bf3a7deef.jpg" alt=""><br>图片来源于简书App<br><a id="more"></a><!--more--></p>
 <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>关于雅虎的14条军规。</p>
