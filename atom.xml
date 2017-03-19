@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-18T03:10:28.000Z</updated>
+  <updated>2017-03-19T02:13:37.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读书笔记：高性能网站建设指南（2）</title>
+    <link href="http://yoursite.com/2017/03/19/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%9A%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E6%8C%87%E5%8D%97%EF%BC%882%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/19/读书笔记：高性能网站建设指南（2）/</id>
+    <published>2017-03-19T02:11:34.000Z</published>
+    <updated>2017-03-19T02:13:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于雅虎的14条军规。</p>
+<p>关于个人对前端性能优化的认识。</p>
+<p>主要记载学习笔记。</p>
+<p>读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。<br><a id="more"></a><!--more--></p>
+<h4 id="规则5：将样式表放在顶部"><a href="#规则5：将样式表放在顶部" class="headerlink" title="规则5：将样式表放在顶部"></a>规则5：将样式表放在顶部</h4><p>HTML 标准要求把样式表和JS的内容都放在顶部。js内容暂且不说。<br>雅虎团队做了一些有趣的测试。他们为了让网页加载的更快，尝试放在文档底部。<br>但结果，却让用户感觉页面运行的更缓慢了。</p>
+<h5 id="逐步呈现"><a href="#逐步呈现" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>页面通常都是按顺序进行下载的，设计到底部的初衷是想让用户先看到最重要的组建内容，以及页面内容，最后在进行样式渲染。<br>但是将样式表放在文档底部却会导致浏览器组织内容的逐步呈现。<br>当时我看到这句话，脑海中产生一副画面，一个小孩从上面扔东西，一个妇人拿个兜子去挨个接，直到没有力气拿不住了，然后把这些东西直接扔到地上。<br>在我想来最后的重物就是这个CSS文件了。</p>
+<h5 id="产生的影响"><a href="#产生的影响" class="headerlink" title="产生的影响"></a>产生的影响</h5><h6 id="白屏"><a href="#白屏" class="headerlink" title="白屏"></a>白屏</h6><p>将CSS放到底部会产生短暂的白屏，因为逐步呈现被禁止了。<br><a href="http://stevesouders.com/hpws/css-bottom.php" target="_blank" rel="external">DEMO.</a><br>我记得前几天在segfaultment社区有人提白屏问题。但不是像这种“兜着”的白屏，我觉得他的问题是响应的内容的图片很大，还有些资源找不到。</p>
+<h6 id="无样式内容的闪烁"><a href="#无样式内容的闪烁" class="headerlink" title="无样式内容的闪烁"></a>无样式内容的闪烁</h6><p>在页面中，文档为样式使用了一个CSS规则，但是却在最后的底部，又引入了一个CSS资源，有进行了页面重绘，所以造成了页面无样式内容的闪烁。<br><a href="http://stevesouders.com/hpws/css-fouc.php" target="_blank" rel="external">DEMO.</a></p>
+<h6 id="为什么造成这样"><a href="#为什么造成这样" class="headerlink" title="为什么造成这样"></a>为什么造成这样</h6><blockquote>
+<p>如果样式表仍在加载，构建呈现树就是一种浪费，因为在所有样式表加载并解析完毕之前无需绘制任何东西。否则就会遇到无样式内容闪烁的问题。  —DavidHyatt.</p>
+</blockquote>
+<p>其实现在我们工作里，有进行页面加载进来后在利用JS进行位置重绘这样的问题，这样无形中就削弱了性能。</p>
+<h5 id="几个DEMO测试"><a href="#几个DEMO测试" class="headerlink" title="几个DEMO测试"></a>几个DEMO测试</h5><p>可以对比一下放到底部和顶部的时间。<br>我这里其实相差不大的，甚至底部还要更快一些，但是白屏的时间让人体验太差了。<br><a href="http://stevesouders.com/hpws/css-bottom.php" target="_blank" rel="external">底部</a><br><a href="http://stevesouders.com/hpws/css-top.php" target="_blank" rel="external">顶部</a></p>
+<h5 id="关于import引入"><a href="#关于import引入" class="headerlink" title="关于import引入"></a>关于import引入</h5><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@import" target="_blank" rel="external">about import.</a></p>
+<p>@import 必须放在所有其他规则之前。<br>可能会出现一些样式引入了但是却没有加载进来让人挠头的问题。<br>使用@import会让之组建下载的无序性，因为使用@import引用的文件只有在引用它的那个css文件被下载、解析之后，浏览器才会知道还有另外一个css需要下载，这时才去下载，然后下载后开始解析、构建render tree等一系列操作。这种情况就类似于我刚说的，页面加载完后，利用JS去重绘样式，重绘位置。</p>
+<h4 id="规则6-将脚本放在底部"><a href="#规则6-将脚本放在底部" class="headerlink" title="规则6:将脚本放在底部"></a>规则6:将脚本放在底部</h4><p>JS是一个很霸道的语言。JS运行当中，在解释器运行JS的时候，JS代码没完成之前，其他所有代码全部阻断。<br>在JS中有一个预处理过程，预处理完了才执行，预处理完了，JS代码从上到下的进行执行。这里涉及到一个变量提升的知识点。</p>
+<p>文中尝试把JS放到中部，顶部，底部不同位置来测试产生的影响。</p>
+<h5 id="放在中部"><a href="#放在中部" class="headerlink" title="放在中部"></a>放在中部</h5><p><a href="http://stevesouders.com/hpws/js-middle.php" target="_blank" rel="external">DMEO</a></p>
+<p>下载JS代码需要10S左右的时间，页面上部分（脚本以上）代码立即显示出来了，而下部分要花大约10S才能显示出来，这段时间页面在加载脚本。</p>
+<h5 id="逐步呈现-1"><a href="#逐步呈现-1" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>使用脚本时，对于所有位于脚本以下的内容，逐步呈现都被阻塞。将脚本放在页面越靠下的地方，意味着更多的内容能够逐步地呈现。</p>
+<h5 id="并行下载和脚本阻塞下载"><a href="#并行下载和脚本阻塞下载" class="headerlink" title="并行下载和脚本阻塞下载"></a>并行下载和脚本阻塞下载</h5><p>并行下载意味着我们可以下载更多的组件（取决于你的宽带和CPU速度），但是下载脚本时并行下载还是被禁用了。一部分原因是因为可能你的JS代码有类似document.write的操作，另一个原因为了保证JS脚本是按特定顺序来加载到浏览器中的。（js代码中的互相依赖。）</p>
+<p>文中还提到了defer 延时加载，但是在Firfox中延迟脚本也会阻塞呈现和并行加载。<br>关于defer 和async 多说两句，个人建议不要使用，就打defer而言，官方说HTML中脚本是按顺序执行，但是你可以尝试一下，在页面上使用defer 引入两个相关联的JS脚本， 第一个JS比第二个JS要大，有可能会导致顺序的错乱。</p>
+<h5 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h5><p><a href="http://stevesouders.com/hpws/js-top.php" target="_blank" rel="external">顶部DEMO</a><br><a href="http://stevesouders.com/hpws/js-bottom.php" target="_blank" rel="external">底部DEMO</a></p>
+<h4 id="规则7-避免CSS表达式"><a href="#规则7-避免CSS表达式" class="headerlink" title="规则7:避免CSS表达式"></a>规则7:避免CSS表达式</h4><p>CSS表达式，你用过吗？<br>CSS表达式是CSS属性由JS来进行设定的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-color:expression(newDate().getHours()%2?&quot;#ccc&quot;:&quot;#fff&quot;);</div></pre></td></tr></table></figure></p>
+<p>这里用expression方法来接受了一个JS表达式，CSS的属性被设置成为对JS表达式值得结果。</p>
+<h5 id="更新的频率过于频繁"><a href="#更新的频率过于频繁" class="headerlink" title="更新的频率过于频繁"></a>更新的频率过于频繁</h5><p>CSS表达式的问题在于页面对其进行的操作频率非常高，当页面滚动甚至鼠标滑动时都要运行求职。影响了JS性能。</p>
+<h5 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h5><p>解决该问题方式基本都使用JS来完成操作，文中还介绍了可以创建一次性表达来进行替换。</p>
+<p>简单介绍一下一次性表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line"> p&#123;</div><div class="line">	 background-color:expression(BgColor(this))</div><div class="line"> &#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">function BgColor(elem)&#123;</div><div class="line">	elem.style.backgroundColor =(new Date()).getHours()%2?&quot;#ccc&quot;:&quot;#fff&quot;;</div><div class="line">&#125;	</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>CSS表达式调用了BgColor函数，该函数设定了一个明确的值，并且移除了CSS表达式。<br>我感觉这就是一种隐性的替换。还不如直接就用JS来操作。<br>不过多琢磨几下，你们觉得用一次性表达式和用JS来渲染 那个对页面性能更友好呢？</p>
+<h4 id="规则8：使用外部Js和Css"><a href="#规则8：使用外部Js和Css" class="headerlink" title="规则8：使用外部Js和Css"></a>规则8：使用外部Js和Css</h4><p>平常开发中，如果能复用的我基本单例放一个文件里，不能的就内联写到页面里。来看看书里是怎么讲的。<br>其实我以前觉得有点规模公司的网站，CSS，JS应该很规范，抱着学习的角度去看看，有的还不及我写的呢~哈哈~~</p>
+<h5 id="内联VS-外置"><a href="#内联VS-外置" class="headerlink" title="内联VS 外置"></a>内联VS 外置</h5><p>来看看内联与外置的对比。</p>
+<p><a href="http://stevesouders.com/hpws/inlined.php" target="_blank" rel="external">内联JS和CSS的示例.</a><br><a href="http://stevesouders.com/hpws/external.php" target="_blank" rel="external">外部JS和CSS的示例.</a></p>
+<p>首次访问时，内联要快一些，二次访问浏览器加了缓存感觉2个速度相差不大。</p>
+<p>书中也提到了内联比外部的快的原因因为需要承担多个HTTP请求，在第一条规则里已经提到了。</p>
+<h5 id="页面浏览量"><a href="#页面浏览量" class="headerlink" title="页面浏览量"></a>页面浏览量</h5><p>用户访问的次数越少，内联的Js和Css更具优势。</p>
+<h5 id="空缓存与完整缓存"><a href="#空缓存与完整缓存" class="headerlink" title="空缓存与完整缓存"></a>空缓存与完整缓存</h5><p>如果网站本质上能够为用户带来完整缓存率，使用外部文件的收益将更大。如果不大可能使用完整缓存，则内联是更好的选择。</p>
+<h5 id="组件重用"><a href="#组件重用" class="headerlink" title="组件重用"></a>组件重用</h5><p>如果网站中使用了相同的样式和JS脚本，提高了组件的重用率。那么引入外部文件是一个更好的选择，因为用户在首页进行导航时，JS和CSS文件已经被缓存进来了。</p>
+<h5 id="两全其美"><a href="#两全其美" class="headerlink" title="两全其美"></a>两全其美</h5><p>内联元素无法使用浏览器缓存，书里提供了两种方法，达到两全其美。</p>
+<h6 id="加载后下载"><a href="#加载后下载" class="headerlink" title="加载后下载"></a>加载后下载</h6><p>主页画面作为浏览口进行”拉客”,加载后，通过JS方法俩下载其他页面需要的CSS,JS方法。</p>
+<h6 id="动态内联"><a href="#动态内联" class="headerlink" title="动态内联"></a>动态内联</h6><p>如果主页服务器直到一个组件是否在浏览器的缓存中，就可以在内联和外部之间做出最佳的选择。<br>书中通过判断cookie值的存在来做对应的选择。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cookie ? 加载外部组件 : 内联</div></pre></td></tr></table></figure></p>
+<p>我自己更倾向于第一种方式。</p>
+<p><a href="http://stevesouders.com/hpws/post-onload.php" target="_blank" rel="external">加载后下载的demo</a></p>
+<p><a href="http://stevesouders.com/hpws/dynamic-inlining.php" target="_blank" rel="external">动态内联demo</a></p>
+<p>(未完待续)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于雅虎的14条军规。&lt;/p&gt;
+&lt;p&gt;关于个人对前端性能优化的认识。&lt;/p&gt;
+&lt;p&gt;主要记载学习笔记。&lt;/p&gt;
+&lt;p&gt;读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="读书笔记 JavaScript" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>叮！你的XX云大礼包以上线 /(ㄒoㄒ)/~~</title>
@@ -66,12 +133,13 @@
     <link href="http://yoursite.com/2017/03/04/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E6%8C%87%E5%8D%97/"/>
     <id>http://yoursite.com/2017/03/04/读书笔记——高性能网站建设指南/</id>
     <published>2017-03-04T15:55:25.000Z</published>
-    <updated>2017-03-18T03:07:50.063Z</updated>
+    <updated>2017-03-19T02:11:47.890Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3230776-3d33665bf3a7deef.jpg" alt=""><br>图片来源于简书App<br><a id="more"></a><!--more--></p>
 <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>关于雅虎的14条军规。</p>
 <p>关于个人对前端性能优化的认识。</p>
 <p>主要记载学习笔记。</p>
+<p>读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。</p>
 <h4 id="绪言"><a href="#绪言" class="headerlink" title="绪言"></a>绪言</h4><h5 id="跟踪Web页面性能"><a href="#跟踪Web页面性能" class="headerlink" title="跟踪Web页面性能"></a>跟踪Web页面性能</h5><p>我们首次访问网站时，缓存是空的。浏览器会解析HTML文档并下载网站需要的组件。用户需要大部分的时间来等待组件的下载，还有小部分时间解析HTML，脚本以及样式表上面。</p>
 <h5 id="性能黄金法则"><a href="#性能黄金法则" class="headerlink" title="性能黄金法则"></a>性能黄金法则</h5><p>我们访问页面时，只有10%-20%的最终用户的响应时间花在下载HTML文档上，其余的时间都是在下载页面所需的所有组件上。</p>
 <blockquote>
