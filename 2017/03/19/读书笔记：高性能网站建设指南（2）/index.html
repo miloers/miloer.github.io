@@ -98,7 +98,7 @@
 关于个人对前端性能优化的认识。
 主要记载学习笔记。
 读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。">
-<meta property="og:updated_time" content="2017-03-19T02:13:37.000Z">
+<meta property="og:updated_time" content="2017-03-19T04:06:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读书笔记：高性能网站建设指南（2）">
 <meta name="twitter:description" content="关于雅虎的14条军规。
@@ -351,7 +351,7 @@
 <p>主要记载学习笔记。</p>
 <p>读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。<br><a id="more"></a><!--more--></p>
 <h4 id="规则5：将样式表放在顶部"><a href="#规则5：将样式表放在顶部" class="headerlink" title="规则5：将样式表放在顶部"></a>规则5：将样式表放在顶部</h4><p>HTML 标准要求把样式表和JS的内容都放在顶部。js内容暂且不说。<br>雅虎团队做了一些有趣的测试。他们为了让网页加载的更快，尝试放在文档底部。<br>但结果，却让用户感觉页面运行的更缓慢了。</p>
-<h5 id="逐步呈现"><a href="#逐步呈现" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>页面通常都是按顺序进行下载的，设计到底部的初衷是想让用户先看到最重要的组建内容，以及页面内容，最后在进行样式渲染。<br>但是将样式表放在文档底部却会导致浏览器组织内容的逐步呈现。<br>当时我看到这句话，脑海中产生一副画面，一个小孩从上面扔东西，一个妇人拿个兜子去挨个接，直到没有力气拿不住了，然后把这些东西直接扔到地上。<br>在我想来最后的重物就是这个CSS文件了。</p>
+<h5 id="逐步呈现"><a href="#逐步呈现" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>页面通常都是按顺序进行下载的，设计到底部的初衷是想让用户先看到最重要的组建内容，以及页面内容，最后在进行样式渲染。<br>但是将样式表放在文档底部却会导致浏览器阻止内容的逐步呈现。<br>当时我看到这句话，脑海中产生一副画面，一个小孩从上面扔东西，一个妇人拿个兜子去挨个接，直到没有力气拿不住了，然后把这些东西直接扔到地上。<br>在我想来最后的重物就是这个CSS文件了。</p>
 <h5 id="产生的影响"><a href="#产生的影响" class="headerlink" title="产生的影响"></a>产生的影响</h5><h6 id="白屏"><a href="#白屏" class="headerlink" title="白屏"></a>白屏</h6><p>将CSS放到底部会产生短暂的白屏，因为逐步呈现被禁止了。<br><a href="http://stevesouders.com/hpws/css-bottom.php" target="_blank" rel="external">DEMO.</a><br>我记得前几天在segfaultment社区有人提白屏问题。但不是像这种“兜着”的白屏，我觉得他的问题是响应的内容的图片很大，还有些资源找不到。</p>
 <h6 id="无样式内容的闪烁"><a href="#无样式内容的闪烁" class="headerlink" title="无样式内容的闪烁"></a>无样式内容的闪烁</h6><p>在页面中，文档为样式使用了一个CSS规则，但是却在最后的底部，又引入了一个CSS资源，有进行了页面重绘，所以造成了页面无样式内容的闪烁。<br><a href="http://stevesouders.com/hpws/css-fouc.php" target="_blank" rel="external">DEMO.</a></p>
 <h6 id="为什么造成这样"><a href="#为什么造成这样" class="headerlink" title="为什么造成这样"></a>为什么造成这样</h6><blockquote>
@@ -432,6 +432,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/03/22/Js数据类型小记/" rel="prev" title="Js数据类型小记">
+                Js数据类型小记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -500,7 +504,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -518,7 +522,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

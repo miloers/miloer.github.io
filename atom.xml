@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-19T02:13:37.000Z</updated>
+  <updated>2017-03-22T11:59:24.415Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,18 +16,66 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Js数据类型小记</title>
+    <link href="http://yoursite.com/2017/03/22/Js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://yoursite.com/2017/03/22/Js数据类型小记/</id>
+    <published>2017-03-22T11:55:17.000Z</published>
+    <updated>2017-03-22T11:59:24.415Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/2235778-71242edfe6eef970.png" alt=""><br>console.log(([])?true:false);<br>console.log(([]==false?true:false));<br>console.log(({}==false)?true:false)<br><a id="more"></a><!--more--></p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>今天在群里看到一道题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">console.log(([])?true:false); </div><div class="line">console.log(([]==false?true:false));</div><div class="line">console.log((&#123;&#125;==false)?true:false) </div><div class="line">得到的结果分别是什么？（） </div><div class="line">A. false true true</div><div class="line">B. true true true</div><div class="line">C. true false true</div><div class="line">D. true true false</div></pre></td></tr></table></figure></p>
+<p>主要考察数据类型的隐性转换，以及关于“==”类型的比较规则。</p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><h5 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(([])?true:false);</div></pre></td></tr></table></figure>
+<p>在这里需要把[]转换为布尔值在进行三目运算。</p>
+<h5 id="Boolean类型的转换"><a href="#Boolean类型的转换" class="headerlink" title="Boolean类型的转换"></a>Boolean类型的转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">布尔类型的转换只有以下几种返回false,其它都为true</div><div class="line">Boolean(undefined) // false</div><div class="line">Boolean(null) // false</div><div class="line">Boolean(0) // false 包含（-0，+0）</div><div class="line">Boolean(NaN) // false</div><div class="line">Boolean(&apos;&apos;) // false</div><div class="line"></div><div class="line">对所有对象，包括空对象以及false对应的布尔对象 new Boolean(false)返回也是true</div><div class="line">Boolean(&#123;&#125;) // true</div><div class="line">Boolean([]) // true</div><div class="line">Boolean(new Boolean(false)) // true</div></pre></td></tr></table></figure>
+<p>那么第一题就返回true了。</p>
+<h5 id="第二，三题"><a href="#第二，三题" class="headerlink" title="第二，三题"></a>第二，三题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2.console.log(([]==false?true:false));</div><div class="line"></div><div class="line">3.console.log((&#123;&#125;==false)?true:false)</div></pre></td></tr></table></figure>
+<p>其实我觉得后面返回true和false挺有迷惑作用的，迷惑在不绕弯，前面就做布尔进行比较了 。从上题指导Boolean([])返回的是true，直接做比较 就返回false了。但是</p>
+<blockquote>
+<p>布尔类型与其它任何类型进行比较，布尔类型将会转换为number类型。</p>
+</blockquote>
+<p>也就是说里我们又加入了Number类型的转换。</p>
+<p>关于<strong>Number</strong>类型的转换</p>
+<p>首先调用其valueOf方法，如果返回的是一个原始类型的值，那么通过Number函数对其进行调用。-&gt; 结束.<br>如果返回还是对象，则改为调用对象自身的toString方法，如果返回的是一个原始类型的值，那么通过Number函数对其进行调用。-&gt; 结束。<br>如果返回的还是对象，那么报错。-&gt;结束。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">// 数值：转换后还是原来的值</div><div class="line">Number(324) // 324</div><div class="line"></div><div class="line">// 字符串：如果可以被解析为数值，则转换为相应的数值</div><div class="line">Number(&apos;324&apos;) // 324</div><div class="line"></div><div class="line">// 字符串：如果不可以被解析为数值，返回NaN</div><div class="line">Number(&apos;324abc&apos;) // NaN</div><div class="line"></div><div class="line">// 空字符串转为0</div><div class="line">Number(&apos;&apos;) // 0</div><div class="line"></div><div class="line">// 布尔值：true 转成1，false 转成0</div><div class="line">Number(true) // 1</div><div class="line">Number(false) // 0</div><div class="line"></div><div class="line">// undefined：转成 NaN</div><div class="line">Number(undefined) // NaN</div><div class="line"></div><div class="line">// null：转成0</div><div class="line">Number(null) // 0</div><div class="line">// []:转为0</div><div class="line">Number([]) //0</div><div class="line">//&#123;&#125;：转为NaN</div><div class="line">Number(&#123;&#125;) // NaN</div></pre></td></tr></table></figure></p>
+<p>这里插一句关于toString的应用。我们可以通过toString来判断数据类型。</p>
+<blockquote>
+<p>实例对象可能会自定义toString方法，覆盖掉Object.prototype.toString方法。通过函数的call方法，可以在任意值上调用Object.prototype.toString方法，帮助我们判断这个值的类型。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">console.log([].toString()); // 返回空</div><div class="line">console.log(Object.prototype.toString.call([]))</div><div class="line">//[object Array]</div><div class="line">我们使用typeof 来判断类型时,对于引用对象和数组对象都返回的是Object</div><div class="line">typeof []</div><div class="line">//&quot;object&quot; </div><div class="line"></div><div class="line">Object.prototype.toString.call(2) // &quot;[object Number]&quot;</div><div class="line">Object.prototype.toString.call(&apos;&apos;) // &quot;[object String]&quot;</div><div class="line">Object.prototype.toString.call(true) // &quot;[object Boolean]&quot;</div><div class="line">Object.prototype.toString.call(undefined) // &quot;[object Undefined]&quot;</div><div class="line">Object.prototype.toString.call(null) // &quot;[object Null]&quot;</div><div class="line">Object.prototype.toString.call(Math) // &quot;[object Math]&quot;</div><div class="line">Object.prototype.toString.call(&#123;&#125;) // &quot;[object Object]&quot;</div><div class="line">Object.prototype.toString.call([]) // &quot;[object Array]&quot;</div></pre></td></tr></table></figure>
+<p>那么 Number([])，返回的是0；Number({}),返回的是NaN。</p>
+<blockquote>
+<p>简单记一下如果Number方法对象的参数是Object时，返回的就是NaN;</p>
+</blockquote>
+<p>那么二三题，依次返回的就是true和false。</p>
+<h4 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h4><p>我只是从题目出发，简单梳理了一下需要的知识点，但是并没有把所有的知识点梳理一遍。<br>文中部分内容参考于<a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">JavaScript 标准参考教程（alpha）</a>。<br>这次也解决了我的一个问题，我一直以为null是Object来着。 [笑哭]。</p>
+<p>曾经在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Number(null) //0</div></pre></td></tr></table></figure></p>
+<p>null返回0里还当一个特殊点来记。<br>因为在前文中说到嘛，如果Number方法对象的参数是Object时，返回的就是NaN。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/2235778-71242edfe6eef970.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;console.log(([])?true:false);&lt;br&gt;console.log(([]==false?true:false));&lt;br&gt;console.log(({}==false)?true:false)&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="js 面试题" scheme="http://yoursite.com/tags/js-%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>读书笔记：高性能网站建设指南（2）</title>
     <link href="http://yoursite.com/2017/03/19/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%9A%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%AB%99%E5%BB%BA%E8%AE%BE%E6%8C%87%E5%8D%97%EF%BC%882%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/19/读书笔记：高性能网站建设指南（2）/</id>
     <published>2017-03-19T02:11:34.000Z</published>
-    <updated>2017-03-19T02:13:37.000Z</updated>
+    <updated>2017-03-19T04:06:01.000Z</updated>
     
     <content type="html"><![CDATA[<p>关于雅虎的14条军规。</p>
 <p>关于个人对前端性能优化的认识。</p>
 <p>主要记载学习笔记。</p>
 <p>读书也并不意味着照本宣科，大部分内容都是根据书中理解然后进行知识拓展，也多聊一聊自己对前端性能的理解，所以理解难免有错，如果有错误，希望不吝指正。<br><a id="more"></a><!--more--></p>
 <h4 id="规则5：将样式表放在顶部"><a href="#规则5：将样式表放在顶部" class="headerlink" title="规则5：将样式表放在顶部"></a>规则5：将样式表放在顶部</h4><p>HTML 标准要求把样式表和JS的内容都放在顶部。js内容暂且不说。<br>雅虎团队做了一些有趣的测试。他们为了让网页加载的更快，尝试放在文档底部。<br>但结果，却让用户感觉页面运行的更缓慢了。</p>
-<h5 id="逐步呈现"><a href="#逐步呈现" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>页面通常都是按顺序进行下载的，设计到底部的初衷是想让用户先看到最重要的组建内容，以及页面内容，最后在进行样式渲染。<br>但是将样式表放在文档底部却会导致浏览器组织内容的逐步呈现。<br>当时我看到这句话，脑海中产生一副画面，一个小孩从上面扔东西，一个妇人拿个兜子去挨个接，直到没有力气拿不住了，然后把这些东西直接扔到地上。<br>在我想来最后的重物就是这个CSS文件了。</p>
+<h5 id="逐步呈现"><a href="#逐步呈现" class="headerlink" title="逐步呈现"></a>逐步呈现</h5><p>页面通常都是按顺序进行下载的，设计到底部的初衷是想让用户先看到最重要的组建内容，以及页面内容，最后在进行样式渲染。<br>但是将样式表放在文档底部却会导致浏览器阻止内容的逐步呈现。<br>当时我看到这句话，脑海中产生一副画面，一个小孩从上面扔东西，一个妇人拿个兜子去挨个接，直到没有力气拿不住了，然后把这些东西直接扔到地上。<br>在我想来最后的重物就是这个CSS文件了。</p>
 <h5 id="产生的影响"><a href="#产生的影响" class="headerlink" title="产生的影响"></a>产生的影响</h5><h6 id="白屏"><a href="#白屏" class="headerlink" title="白屏"></a>白屏</h6><p>将CSS放到底部会产生短暂的白屏，因为逐步呈现被禁止了。<br><a href="http://stevesouders.com/hpws/css-bottom.php" target="_blank" rel="external">DEMO.</a><br>我记得前几天在segfaultment社区有人提白屏问题。但不是像这种“兜着”的白屏，我觉得他的问题是响应的内容的图片很大，还有些资源找不到。</p>
 <h6 id="无样式内容的闪烁"><a href="#无样式内容的闪烁" class="headerlink" title="无样式内容的闪烁"></a>无样式内容的闪烁</h6><p>在页面中，文档为样式使用了一个CSS规则，但是却在最后的底部，又引入了一个CSS资源，有进行了页面重绘，所以造成了页面无样式内容的闪烁。<br><a href="http://stevesouders.com/hpws/css-fouc.php" target="_blank" rel="external">DEMO.</a></p>
 <h6 id="为什么造成这样"><a href="#为什么造成这样" class="headerlink" title="为什么造成这样"></a>为什么造成这样</h6><blockquote>
