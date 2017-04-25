@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-16T03:31:08.826Z</updated>
+  <updated>2017-04-25T08:40:10.712Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个面试题引起的事件委托</title>
+    <link href="http://yoursite.com/2017/04/25/%E4%B8%80%E4%B8%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E5%BC%95%E8%B5%B7%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/"/>
+    <id>http://yoursite.com/2017/04/25/一个面试题引起的事件委托/</id>
+    <published>2017-04-25T08:37:12.000Z</published>
+    <updated>2017-04-25T08:40:10.712Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3459828-fe024299e76685da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>(图片与本文无关)<br><a id="more"></a><!--more--></p>
+<h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>从掘金看到一篇文章<a href="https://juejin.im/post/58f558efac502e006c3e5c97" target="_blank" rel="external">破解前端面试（80% 应聘者不及格系列）：从 DOM 说起</a>。<br> 有题目，就顺着做了，然后自己稍加改动了一下，最后就索性当个例子，记录下来。</p>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>什么是事件委托？</p>
+<p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+<p>网上有这么个收快递的例子来讲解事件委托：<br>快递员把快递寄到公司，由前台代收，判断东西是谁的，然后分发给物主。<br>如果每个员工挨个接收的话，就影响了办公效率。</p>
+<p>在程序里也是一样的，每个函数都是对象，都会占用内存，内存中的对象越多，性能就越差。如果使用事件委托，那么就只针对它的父级进行操作（利用冒泡事件）。</p>
+<p>网上随便找了个<a href="http://www.jb51.net/article/76293.htm" target="_blank" rel="external">例子</a>，不使用事件委托的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"myLinks"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"goSomewhere"</span> &gt;</span>Go somewhere<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"doSomething"</span> &gt;</span>Do something<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"sayHi"</span> &gt;</span>Say hi<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> item1=<span class="built_in">document</span>.getElementById(<span class="string">"goSomewhere"</span>);</div><div class="line"><span class="keyword">var</span> item2=<span class="built_in">document</span>.getElementById(<span class="string">"doSomething"</span>);</div><div class="line"><span class="keyword">var</span> item3=<span class="built_in">document</span>.getElementById(<span class="string">"sayHi"</span>);</div><div class="line">item1.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'goSomewhere'</span>);</div><div class="line">&#125;</div><div class="line">item2.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'doSomething'</span>);</div><div class="line">&#125;</div><div class="line">item3.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="string">"hello"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个是顺着掘金文章写得一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;title&gt;&lt;/title&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;input type=&quot;button&quot; name=&quot;&quot; id=&quot;btn&quot; value=&quot;add&quot; /&gt;</div><div class="line">    &lt;ul id=&quot;ndContainer&quot;&gt;</div><div class="line">        &lt;li&gt;1&lt;/li&gt;</div><div class="line">        &lt;li&gt;2&lt;/li&gt;</div><div class="line">        &lt;li&gt;3&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line"></div><div class="line">    &lt;script&gt;</div><div class="line">        window.onload = function() &#123;</div><div class="line"></div><div class="line">            var ndBtn = document.querySelector(&apos;#btn&apos;);</div><div class="line"></div><div class="line">            var ndContainer = document.querySelector(&apos;#ndContainer&apos;);</div><div class="line"></div><div class="line">            var ndLi = document.getElementsByTagName(&apos;li&apos;);</div><div class="line"></div><div class="line">            ndContainer.addEventListener(&apos;mouseover&apos;, function() &#123;</div><div class="line">                var ev = ev || window.event;</div><div class="line">                var target = ev.target || ev.srcElement;</div><div class="line">                if (target.nodeName == &quot;LI&quot;) &#123;</div><div class="line">                    alert(target.innerHTML);</div><div class="line">                &#125; else &#123;</div><div class="line">                    alert(target.nodeName);</div><div class="line">                    //mouseenter,不冒泡</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">            ndBtn.addEventListener(&apos;click&apos;, function() &#123;</div><div class="line">                var length = ndLi.length;</div><div class="line">                var createLi = document.createElement(&apos;li&apos;);</div><div class="line">                createLi.innerHTML = length + 1;</div><div class="line">                ndContainer.appendChild(createLi);</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>使用事件委托不用去挨个遍历元素的节点，通过target的属性判断元素，执行事件。</p>
+<p>特意使用了moseenter这个不冒泡的方法测试了一下。</p>
+<p>总结一下事件委托的优点吧：提高性能，提高代码质量，减少代码量，给别人看的时候也会很舒服。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>顺着这个例子再说说别的，如果你细心的话你应该看到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var ndBtn = document.querySelector(&apos;#btn&apos;);</div><div class="line"></div><div class="line">var ndContainer = document.querySelector(&apos;#ndContainer&apos;);</div><div class="line"></div><div class="line">var ndLi = document.getElementsByTagName(&apos;li&apos;);</div></pre></td></tr></table></figure></p>
+<p>为什么 ndLi 不用querySelectorAll来获取？<br>先来看看他们是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  var ndLi = document.getElementsByTagName(&apos;li&apos;);</div><div class="line">  var testLi = document.querySelectorAll(&apos;li&apos;);</div><div class="line">  console.log(&quot;ByTagName&quot; + ndLi);</div><div class="line">  console.log(&quot;querySelectorAll&quot; + testLi);</div><div class="line"></div><div class="line">ByTagName[object HTMLCollection]</div><div class="line">querySelectorAll[object NodeList]</div></pre></td></tr></table></figure>
+<p>console.log里为什么没加toString方法是因为“前面字符串+“导致隐式类型转换了，不明白的可以<a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">戳这</a>。</p>
+<p>一个是object HTMLCollection 一个是object NodeList</p>
+<blockquote>
+<p>objectNodeList-The NodeList object returned by the querySelectorAll() method must be static ([DOM], section 8).</p>
+</blockquote>
+<p>它返回的是一个静态的NodelIst对象。<br>如果使用这个add方法下 就一直是4 ，4， 4。</p>
+<blockquote>
+<p>object HTMLCollection-An HTMLCollection is a list of nodes. An individual node may be accessed by either ordinal index or the node’s name or id attributes.<br>Note: Collections in the HTML DOM are assumed to be live meaning that they are automatically updated when the underlying document is changed.</p>
+</blockquote>
+<p>而HTMLCollection是一个动态的元素集合，每次文档每次改变时都会重新对文档进行查询。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>有些东西写的不够详细，包括最后的其他，如果感兴趣想了解的朋友自己搜一下。</p>
+<p>如果有不对的地方，烦请指正。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3459828-fe024299e76685da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;(图片与本文无关)&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>老街</title>
