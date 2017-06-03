@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-18T10:19:39.598Z</updated>
+  <updated>2017-06-03T11:13:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,48 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>同步执行引起的小Bug</title>
+    <link href="http://yoursite.com/2017/06/03/%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C%E5%BC%95%E8%B5%B7%E7%9A%84%E5%B0%8FBug/"/>
+    <id>http://yoursite.com/2017/06/03/同步执行引起的小Bug/</id>
+    <published>2017-06-03T11:02:03.000Z</published>
+    <updated>2017-06-03T11:13:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/4030811-28c8eefe3609af9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50" alt="alt text"></p>
+<a id="more"></a><!--more-->
+<h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>需求是这样的，点击按钮，查询的时候，body 动态加载个“加载动画”。需求很明确，也确实很简单。</p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>项目前提里有一部分必须是同步执行的。<br>当时就全局设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ajaxSetup(&#123;</div><div class="line">    async: false</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>同步模块结束以后，我忘了在改过来了。</p>
+<p>然后小Bug 就产生了。</p>
+<p>正常进程状态： 点击查询按钮-&gt;Body添加节点，节点里内容为（等待Loading）-&gt;按条件进行搜索，返回数据（2s左右）-&gt;生成图形报表-&gt;更改Loading状态-&gt;生成图形报表图片。</p>
+<p>Bug进程状态: 点击查询按钮-&gt;Body添加节点（这里节点生成了，但节点里的内容【等待loading】等待并没有出来）-&gt;按条件进行搜索，返回数据（2s左右），<strong>这时候节点内容出来了</strong>-&gt;生成图形报表-&gt;更改Loading状态-&gt;生成图形报表图片。</p>
+<p>我在浏览器里测试时，还在奇怪。节点出来了，但是节点内容的标签当时是点不出来的，当时的进程应该是正在获取数据，有了数据又返回来执行加载节点内容。</p>
+<p><img src="https://ws1.sinaimg.cn/large/9150e4e5ly1fdx3658ia7j203j03o742.jpg" alt="还有这种操作？"></p>
+<h4 id="另一个问题"><a href="#另一个问题" class="headerlink" title="另一个问题"></a>另一个问题</h4><p>我记得前些日子还有一个挺奇怪的问题，现在也没确定问题的所在，程序是在异步里执行的，生成一个大的二维数组数据，获取这个数据要级联七八个表，而且表里的内容格式还很复杂，还要对内容进行二次处理，大约5-6秒的时间 （时间不稳定）。/笑哭。</p>
+<p> 获取数据后，先输入这个二维表格，在输出二维表格里的某一行的数据（这三个是放在一个事件里的），像这样：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(subTable);</div><div class="line">console.log(subTable[1][1]);</div><div class="line">console.log(subTable[2][1]);</div></pre></td></tr></table></figure></p>
+<p> 然后问题出现了，subTable的数据全出来了，但是后面的两个数据，还是<strong>默认</strong>的数据！！</p>
+<p>我又测试了几次，响应时间短的时候，这两行的某一个数据能出来，有时候还是初始数据。因为当时项目赶得及，我把代码结构就给改了，现在还原也还原不过来了。。。</p>
+<p>不过倒是有几点不靠谱的猜测，不过我感觉最可能的是，那时候的代码环境复杂。我所描绘的事件并不是完全事件。。</p>
+<p>事后，我试着还原整个事情的经过，但是都没有到达那时的诡异效果。</p>
+<p>（完）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/4030811-28c8eefe3609af9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50&quot; alt=&quot;alt text&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="JS Bug" scheme="http://yoursite.com/tags/JS-Bug/"/>
+    
+  </entry>
+  
+  <entry>
     <title>小试Mustache，封装自己的样式模板</title>
     <link href="http://yoursite.com/2017/05/18/%E5%B0%8F%E8%AF%95Mustache%EF%BC%8C%E5%B0%81%E8%A3%85%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%A8%A1%E6%9D%BF/"/>
     <id>http://yoursite.com/2017/05/18/小试Mustache，封装自己的样式模板/</id>
     <published>2017-05-18T09:42:07.000Z</published>
-    <updated>2017-05-18T10:19:39.598Z</updated>
+    <updated>2017-05-18T10:19:54.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/626151-1dfbca9a11951b3f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>(图片与本文无关)</p>
 <a id="more"></a><!--more-->

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JS Bug," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/10/09/hello-world/index.html">
+<meta property="og:title" content="同步执行引起的小Bug">
+<meta property="og:url" content="http://yoursite.com/2017/06/03/同步执行引起的小Bug/index.html">
 <meta property="og:site_name" content="Miloer の 闲言碎语">
-<meta property="og:description" content="Welcome to Hexo.">
-<meta property="og:updated_time" content="2017-01-28T05:34:48.006Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4030811-28c8eefe3609af9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/9150e4e5ly1fdx3658ia7j203j03o742.jpg">
+<meta property="og:updated_time" content="2017-06-03T11:13:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo.">
+<meta name="twitter:title" content="同步执行引起的小Bug">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4030811-28c8eefe3609af9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/09/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/03/同步执行引起的小Bug/"/>
 
 
 
 
 
-  <title> Hello World | Miloer の 闲言碎语 </title>
+  <title> 同步执行引起的小Bug | Miloer の 闲言碎语 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/09/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/03/同步执行引起的小Bug/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Miloer">
@@ -286,7 +286,7 @@
             
             
               
-                Hello World
+                同步执行引起的小Bug
               
             
           </h1>
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-09T14:24:35+08:00">
-                2016-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-03T19:02:03+08:00">
+                2017-06-03
               </time>
             
 
@@ -337,15 +337,23 @@
       
 
       
-        <p>Welcome to Hexo.<br><a id="more"></a><!--more--><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p><img src="http://upload-images.jianshu.io/upload_images/4030811-28c8eefe3609af9f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50" alt="alt text"></p>
+<a id="more"></a><!--more-->
+<h4 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h4><p>需求是这样的，点击按钮，查询的时候，body 动态加载个“加载动画”。需求很明确，也确实很简单。</p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><p>项目前提里有一部分必须是同步执行的。<br>当时就全局设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ajaxSetup(&#123;</div><div class="line">    async: false</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>同步模块结束以后，我忘了在改过来了。</p>
+<p>然后小Bug 就产生了。</p>
+<p>正常进程状态： 点击查询按钮-&gt;Body添加节点，节点里内容为（等待Loading）-&gt;按条件进行搜索，返回数据（2s左右）-&gt;生成图形报表-&gt;更改Loading状态-&gt;生成图形报表图片。</p>
+<p>Bug进程状态: 点击查询按钮-&gt;Body添加节点（这里节点生成了，但节点里的内容【等待loading】等待并没有出来）-&gt;按条件进行搜索，返回数据（2s左右），<strong>这时候节点内容出来了</strong>-&gt;生成图形报表-&gt;更改Loading状态-&gt;生成图形报表图片。</p>
+<p>我在浏览器里测试时，还在奇怪。节点出来了，但是节点内容的标签当时是点不出来的，当时的进程应该是正在获取数据，有了数据又返回来执行加载节点内容。</p>
+<p><img src="https://ws1.sinaimg.cn/large/9150e4e5ly1fdx3658ia7j203j03o742.jpg" alt="还有这种操作？"></p>
+<h4 id="另一个问题"><a href="#另一个问题" class="headerlink" title="另一个问题"></a>另一个问题</h4><p>我记得前些日子还有一个挺奇怪的问题，现在也没确定问题的所在，程序是在异步里执行的，生成一个大的二维数组数据，获取这个数据要级联七八个表，而且表里的内容格式还很复杂，还要对内容进行二次处理，大约5-6秒的时间 （时间不稳定）。/笑哭。</p>
+<p> 获取数据后，先输入这个二维表格，在输出二维表格里的某一行的数据（这三个是放在一个事件里的），像这样：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">console.log(subTable);</div><div class="line">console.log(subTable[1][1]);</div><div class="line">console.log(subTable[2][1]);</div></pre></td></tr></table></figure></p>
+<p> 然后问题出现了，subTable的数据全出来了，但是后面的两个数据，还是<strong>默认</strong>的数据！！</p>
+<p>我又测试了几次，响应时间短的时候，这两行的某一个数据能出来，有时候还是初始数据。因为当时项目赶得及，我把代码结构就给改了，现在还原也还原不过来了。。。</p>
+<p>不过倒是有几点不靠谱的猜测，不过我感觉最可能的是，那时候的代码环境复杂。我所描绘的事件并不是完全事件。。</p>
+<p>事后，我试着还原整个事情的经过，但是都没有到达那时的诡异效果。</p>
+<p>（完）</p>
 
       
     </div>
@@ -367,20 +375,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JS-Bug/" rel="tag"># JS Bug</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/小试Mustache，封装自己的样式模板/" rel="next" title="小试Mustache，封装自己的样式模板">
+                <i class="fa fa-chevron-left"></i> 小试Mustache，封装自己的样式模板
+              </a>
             
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/09/Hexo + Next 遇到的小坑/" rel="prev" title="Hexo + Next 遇到的小坑">
-                Hexo + Next 遇到的小坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另一个问题"><span class="nav-number">3.</span> <span class="nav-text">另一个问题</span></a></li></ol></div>
             
 
           </div>
