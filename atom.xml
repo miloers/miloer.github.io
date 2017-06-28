@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-28T05:00:48.000Z</updated>
+  <updated>2017-06-28T05:11:56.612Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/28/webpack%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/"/>
     <id>http://yoursite.com/2017/06/28/webpack在项目里的应用（笔记）/</id>
     <published>2017-06-28T03:52:56.000Z</published>
-    <updated>2017-06-28T05:00:48.000Z</updated>
+    <updated>2017-06-28T05:11:56.612Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="alt text"></p>
 <a id="more"></a><!--more-->
@@ -33,6 +33,7 @@
 <p>今天呢？尝试着在打包一个页面，可是加载了更多的JS，还像昨天一样，我把能打包的先打包，不能的JS暴露在页面全局。但是令我奇怪的事情发生了，打包的文件里，用不了全局的JS插件。<br>但是在我昨天的印象里，暴露在全局的JS，打包后的JS应该是能访问里面的。接着，我把用到的外面的JS文件放到外面，能正常访问了。</p>
 <h5 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h5><p>今天有时间会尝试着把代码分割开来，理解问题出现的原因，寻找解决问题的方法，然后尝试着把全局的JS也打包进来。</p>
 <p>昨天我看帖子有一句话，webpack更适合做单页页面应用，多页应用更适合用glup来做，是这样吗？</p>
+<h5 id="最后放一张webpack的整体流程图"><a href="#最后放一张webpack的整体流程图" class="headerlink" title="最后放一张webpack的整体流程图"></a>最后放一张webpack的整体流程图</h5><p><img src="https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg" alt="alt text"></p>
 ]]></content>
     
     <summary type="html">
