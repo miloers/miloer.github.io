@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-23T02:01:05.000Z</updated>
+  <updated>2017-06-28T05:00:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack在项目里的应用（笔记）</title>
+    <link href="http://yoursite.com/2017/06/28/webpack%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/06/28/webpack在项目里的应用（笔记）/</id>
+    <published>2017-06-28T03:52:56.000Z</published>
+    <updated>2017-06-28T05:00:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="alt text"></p>
+<a id="more"></a><!--more-->
+<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>以前用webpack配着Vue全家桶做过单页应用。这次准备在多页应用里使用webpack打包程序。</p>
+<h5 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h5><p>可能是刚刚踩过坑就过来用了，能应用的知识点不是很多，凭着一腔热血就滚过来想在项目里试试。</p>
+<p>昨天尝试着在项目里把首页给打包了，结果没想到异常的顺利。</p>
+<p>打包过程是分着踩坑式打的，原来的主页文件大约加载了公共JS 1个，加密JS2个，还有一个jQuery。</p>
+<p>jQuery 版本支持模块的导出，很方便弄，但是加密的2个JS连npm都不支持，别提支持模块导入导出了，怎么办？<br>一开始 ，我只把我写的JS 和公共类以及jQuery打包，加密的JS还是暴露在外面，试着运行一下，可以运行，但是还是暴露在外面，还用webpack 有什么用？<br>感觉不伦不类的。</p>
+<p>接着，看了看2个加密的JS代码，折腾了半小时，把对应使用模块导出了，试着运行，可以运行。</p>
+<p>今天呢？尝试着在打包一个页面，可是加载了更多的JS，还像昨天一样，我把能打包的先打包，不能的JS暴露在页面全局。但是令我奇怪的事情发生了，打包的文件里，用不了全局的JS插件。<br>但是在我昨天的印象里，暴露在全局的JS，打包后的JS应该是能访问里面的。接着，我把用到的外面的JS文件放到外面，能正常访问了。</p>
+<h5 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h5><p>今天有时间会尝试着把代码分割开来，理解问题出现的原因，寻找解决问题的方法，然后尝试着把全局的JS也打包进来。</p>
+<p>昨天我看帖子有一句话，webpack更适合做单页页面应用，多页应用更适合用glup来做，是这样吗？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;alt text&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="js webpack 笔记" scheme="http://yoursite.com/tags/js-webpack-%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>倾力总结40条常见的移动端Web页面问题解决方案</title>
@@ -996,33 +1027,6 @@
     
     
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/10/09/hello-world/"/>
-    <id>http://yoursite.com/2016/10/09/hello-world/</id>
-    <published>2016-10-09T06:24:35.000Z</published>
-    <updated>2017-01-28T05:34:48.006Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to Hexo.<br><a id="more"></a><!--more--><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to Hexo.&lt;br&gt;
-    
-    </summary>
-    
     
   </entry>
   
