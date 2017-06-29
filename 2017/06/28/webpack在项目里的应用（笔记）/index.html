@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Miloer の 闲言碎语">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg">
-<meta property="og:updated_time" content="2017-06-28T05:11:56.612Z">
+<meta property="og:updated_time" content="2017-06-29T08:49:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack在项目里的应用（笔记）">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -349,6 +349,12 @@
 <h5 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h5><p>今天有时间会尝试着把代码分割开来，理解问题出现的原因，寻找解决问题的方法，然后尝试着把全局的JS也打包进来。</p>
 <p>昨天我看帖子有一句话，webpack更适合做单页页面应用，多页应用更适合用glup来做，是这样吗？</p>
 <h5 id="最后放一张webpack的整体流程图"><a href="#最后放一张webpack的整体流程图" class="headerlink" title="最后放一张webpack的整体流程图"></a>最后放一张webpack的整体流程图</h5><p><img src="https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg" alt="alt text"></p>
+<h5 id="6-29"><a href="#6-29" class="headerlink" title="6.29"></a>6.29</h5><p>打包完文件是局部的，html代码在使用时 会报$ undefined</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">test.html</div><div class="line">&lt;script src=&quot;./dist/js/test.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(function() &#123;</div><div class="line">        $(&quot;#fdas&quot;).text(&quot;22&quot;);</div><div class="line">    &#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>test文件里import jQuery，在test.html 在使用jQuery时，就报错了。</p>
+<h6 id="6-29-下午"><a href="#6-29-下午" class="headerlink" title="6.29 下午"></a>6.29 下午</h6><p>理解的有一些偏差，[手动滑稽]。<br>感觉webpack比自己想象的强大的多。</p>
+<p>我模糊的以为引用第三方的JS 给需要export这种模块，其实并不需要，昨天提到需要引入2个JS插件，今天require()引入进来就万事大吉了。<br>这样好像就用不了代码分割的功能了，我其实一直把这个放在心头来着。其实想想像这种第三的库，又不会经常改动，何必要跟逻辑代码混在一起呢？</p>
+<p>今天查了查资料，对这种常引用的第三方库，用CommonsChunkPlugin打包公共代码，打包的JS文件，然后在把这个静态资源做缓存 ，它有一个minChunks属性，我觉得很有趣，这个是判断公共代码的判断标准，某个js模块被多少个chunk加载了才算是公共代码。</p>
 
       
     </div>
@@ -519,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-29"><span class="nav-number">5.</span> <span class="nav-text">6.29</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-29-下午"><span class="nav-number">5.1.</span> <span class="nav-text">6.29 下午</span></a></li></ol></li></ol></div>
             
 
           </div>
