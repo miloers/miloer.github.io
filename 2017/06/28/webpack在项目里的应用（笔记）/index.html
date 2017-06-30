@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Miloer の 闲言碎语">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg">
-<meta property="og:updated_time" content="2017-06-29T08:49:06.000Z">
+<meta property="og:updated_time" content="2017-06-30T08:06:06.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack在项目里的应用（笔记）">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -355,6 +355,13 @@
 <h6 id="6-29-下午"><a href="#6-29-下午" class="headerlink" title="6.29 下午"></a>6.29 下午</h6><p>理解的有一些偏差，[手动滑稽]。<br>感觉webpack比自己想象的强大的多。</p>
 <p>我模糊的以为引用第三方的JS 给需要export这种模块，其实并不需要，昨天提到需要引入2个JS插件，今天require()引入进来就万事大吉了。<br>这样好像就用不了代码分割的功能了，我其实一直把这个放在心头来着。其实想想像这种第三的库，又不会经常改动，何必要跟逻辑代码混在一起呢？</p>
 <p>今天查了查资料，对这种常引用的第三方库，用CommonsChunkPlugin打包公共代码，打包的JS文件，然后在把这个静态资源做缓存 ，它有一个minChunks属性，我觉得很有趣，这个是判断公共代码的判断标准，某个js模块被多少个chunk加载了才算是公共代码。</p>
+<h5 id="6-30"><a href="#6-30" class="headerlink" title="6.30"></a>6.30</h5><p>六月的最后一天，刚刚好也是星期五。</p>
+<p>以前用vue 脚手架，写过一个应用查询的小程序，着实体验了一把单页应用的丝滑柔顺[笑哭]。 记得在页面都是动态引入CSS资源来着，不过那个是单页应用，整体页面引入一个，生成webpack 把JS CSS 一些文件混在一起。</p>
+<p>在多页面应用,我尝试把第三方的css文件，JS库和业务逻辑代码分开打包。</p>
+<p>common.js // 三方 这些不动的</p>
+<p>[name].js //每个页面固定的入口文件</p>
+<p>还有一些单个页面定制的css文件，现在想的是把这个也混放在业务逻辑代码包里。</p>
+<p>不知道这样合不合理？还有把这个打包除了对缓存，以及减少http请求有优势以外还有其他的优势吗？</p>
 
       
     </div>
@@ -525,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-29"><span class="nav-number">5.</span> <span class="nav-text">6.29</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-29-下午"><span class="nav-number">5.1.</span> <span class="nav-text">6.29 下午</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-29"><span class="nav-number">5.</span> <span class="nav-text">6.29</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-29-下午"><span class="nav-number">5.1.</span> <span class="nav-text">6.29 下午</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-30"><span class="nav-number">6.</span> <span class="nav-text">6.30</span></a></li></ol></div>
             
 
           </div>
