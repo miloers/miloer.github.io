@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Miloer の 闲言碎语">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://img.alicdn.com/tps/TB1GVGFNXXXXXaTapXXXXXXXXXX-4436-4244.jpg">
-<meta property="og:updated_time" content="2017-06-30T08:06:06.118Z">
+<meta property="og:updated_time" content="2017-07-01T09:07:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack在项目里的应用（笔记）">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -362,6 +362,12 @@
 <p>[name].js //每个页面固定的入口文件</p>
 <p>还有一些单个页面定制的css文件，现在想的是把这个也混放在业务逻辑代码包里。</p>
 <p>不知道这样合不合理？还有把这个打包除了对缓存，以及减少http请求有优势以外还有其他的优势吗？</p>
+<h5 id="使用extract-text-webpack-plugin"><a href="#使用extract-text-webpack-plugin" class="headerlink" title="使用extract-text-webpack-plugin"></a>使用extract-text-webpack-plugin</h5><p>目前的状态是，html代码里 有一些文件，并不是配合webpack动态载入的模板文件。打包后的CSS样式就这样加载到了页面的头部，但是当用户启动页面时，已经加载html文件了，也就是说，第一眼看到的html文件没有样式的。</p>
+<p>使用extract-text-webpack-plugin插件可以独立打包css文件</p>
+<p>安装<br>npm install extract-text-webpack-plugin –save-dev </p>
+<p>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> rules: [&#123;</div><div class="line">           test: /\.css$/,</div><div class="line">           use: ExtractTextPlugin.extract(&#123;</div><div class="line">               fallback: &quot;style-loader&quot;,</div><div class="line">               use: &quot;css-loader&quot;</div><div class="line">           &#125;)</div><div class="line">   &#125;]</div><div class="line">plugins: [</div><div class="line">       new ExtractTextPlugin(&#123; filename: &apos;css/[name].css&apos;, allChunks: true &#125;)</div><div class="line">   ]</div></pre></td></tr></table></figure></p>
+<p>allChunks 的作用是可以把加载的多个CSS文件合并为一个css文件。</p>
+<h5 id="阶段想法"><a href="#阶段想法" class="headerlink" title="阶段想法"></a>阶段想法</h5><p>就目前而言，感觉就像是把法拉利的材料拼接成了一个金杯。<br>从页面访问角度来讲，初见成效，代码维护也相对更好维护。<br>但是里面使用的plugins，loaders，并没有做到深层次的挖掘，这是下一阶段需要做的学习内容。</p>
 
       
     </div>
@@ -532,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-29"><span class="nav-number">5.</span> <span class="nav-text">6.29</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-29-下午"><span class="nav-number">5.1.</span> <span class="nav-text">6.29 下午</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-30"><span class="nav-number">6.</span> <span class="nav-text">6.30</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#任务"><span class="nav-number">3.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后放一张webpack的整体流程图"><span class="nav-number">4.</span> <span class="nav-text">最后放一张webpack的整体流程图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-29"><span class="nav-number">5.</span> <span class="nav-text">6.29</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-29-下午"><span class="nav-number">5.1.</span> <span class="nav-text">6.29 下午</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-30"><span class="nav-number">6.</span> <span class="nav-text">6.30</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用extract-text-webpack-plugin"><span class="nav-number">7.</span> <span class="nav-text">使用extract-text-webpack-plugin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#阶段想法"><span class="nav-number">8.</span> <span class="nav-text">阶段想法</span></a></li></ol></div>
             
 
           </div>
