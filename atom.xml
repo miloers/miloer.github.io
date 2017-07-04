@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-01T09:07:06.000Z</updated>
+  <updated>2017-07-04T03:35:41.679Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/28/webpack%E5%9C%A8%E9%A1%B9%E7%9B%AE%E9%87%8C%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%94%E8%AE%B0%EF%BC%89/"/>
     <id>http://yoursite.com/2017/06/28/webpack在项目里的应用（笔记）/</id>
     <published>2017-06-28T03:52:56.000Z</published>
-    <updated>2017-07-01T09:07:06.000Z</updated>
+    <updated>2017-07-04T03:35:41.679Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/3354589-aeaa8cbe30addeae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="alt text"></p>
 <a id="more"></a><!--more-->
@@ -53,6 +53,11 @@
 <p>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> rules: [&#123;</div><div class="line">           test: /\.css$/,</div><div class="line">           use: ExtractTextPlugin.extract(&#123;</div><div class="line">               fallback: &quot;style-loader&quot;,</div><div class="line">               use: &quot;css-loader&quot;</div><div class="line">           &#125;)</div><div class="line">   &#125;]</div><div class="line">plugins: [</div><div class="line">       new ExtractTextPlugin(&#123; filename: &apos;css/[name].css&apos;, allChunks: true &#125;)</div><div class="line">   ]</div></pre></td></tr></table></figure></p>
 <p>allChunks 的作用是可以把加载的多个CSS文件合并为一个css文件。</p>
 <h5 id="阶段想法"><a href="#阶段想法" class="headerlink" title="阶段想法"></a>阶段想法</h5><p>就目前而言，感觉就像是把法拉利的材料拼接成了一个金杯。<br>从页面访问角度来讲，初见成效，代码维护也相对更好维护。<br>但是里面使用的plugins，loaders，并没有做到深层次的挖掘，这是下一阶段需要做的学习内容。</p>
+<h5 id="7-4-url-loader"><a href="#7-4-url-loader" class="headerlink" title="7.4  url-loader"></a>7.4  url-loader</h5><p>使用了url-loader，把对应小的图片转为base64的形式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import img from &apos;../../img/icon_to.png&apos;;</div><div class="line"></div><div class="line">对应的Loader</div><div class="line">&#123;</div><div class="line">        test: /\.(png|jpg|gif)$/,</div><div class="line">         use: [&#123;</div><div class="line">             loader: &apos;url-loader&apos;,</div><div class="line">             options: &#123;</div><div class="line">                 limit: 8192</div><div class="line">             &#125;</div><div class="line">         &#125;]</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>这里有一篇单图，雪碧图，base64图片的对比分析。大致看了一下，不明觉厉，准备详细看看<a href="http://www.jianshu.com/p/486fa240a3a7" target="_blank" rel="external">前端图片引入方式神演算.
+</a></p>
+<p>相比传统页面，我测试了目前的页面状态，使用webpack动态引入图片，相比载入的时候更耗时间。</p>
+<p>老实说，看的越多，越感觉一团乱遭，刚刚尝试使用了require.ensure()拆分代码，按需去加载模块，流程明白为什么去这么做，但是这个demo效果没有到达期望的效果，页面载入时间比以前更长了。</p>
 ]]></content>
     
     <summary type="html">
