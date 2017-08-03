@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-20T01:42:47.913Z</updated>
+  <updated>2017-08-03T05:25:46.364Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,166 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mongoDB初探 基本命令</title>
+    <link href="http://yoursite.com/2017/08/03/mongoDB%E5%88%9D%E6%8E%A2-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2017/08/03/mongoDB初探-基本命令/</id>
+    <published>2017-08-03T05:22:27.000Z</published>
+    <updated>2017-08-03T05:25:46.364Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>新建/选择数据库</strong></p>
+<blockquote>
+<p>use test</p>
+</blockquote>
+<p><strong>显示数据库列表</strong></p>
+<blockquote>
+<p>show dbs</p>
+</blockquote>
+<p><strong>创建表</strong></p>
+<blockquote>
+<p>db.createCollection(“test”)</p>
+</blockquote>
+<p><strong>展示表</strong></p>
+<blockquote>
+<p>show collections</p>
+</blockquote>
+<p><strong>删除当前数据库</strong></p>
+<blockquote>
+<p>db.dropDatabase()</p>
+</blockquote>
+<p><strong>获取当前环境的数据库名</strong></p>
+<blockquote>
+<p>db.getName()</p>
+</blockquote>
+<p><strong>数据库命令帮助</strong></p>
+<blockquote>
+<p>db.help()</p>
+</blockquote>
+<p><strong>删除集合</strong></p>
+<blockquote>
+<p>db.name.remove()</p>
+</blockquote>
+<p><strong>集合命令帮助</strong></p>
+<blockquote>
+<p>db.name.help()</p>
+</blockquote>
+<h4 id="文档操作查询"><a href="#文档操作查询" class="headerlink" title="文档操作查询"></a>文档操作查询</h4><p><strong>查询所有</strong></p>
+<blockquote>
+<p>db.name.find()</p>
+</blockquote>
+<p><strong>查询第一条记录</strong></p>
+<blockquote>
+<p>db.name.findOne()</p>
+</blockquote>
+<p><strong>按条件查找</strong></p>
+<blockquote>
+<p>db.name.find({“name”:”miloer”})</p>
+</blockquote>
+<p><strong>指定返回值查询</strong></p>
+<blockquote>
+<p>db.name.find({},{“name”:1})</p>
+</blockquote>
+<p>{}代表所有<br>name代表所查字段<br>1：代表所查询的数据中包含name属性<br>0：与1相反</p>
+<p><strong> $ gt  查询name表中年龄大于20的数据</strong></p>
+<blockquote>
+<p>db.name.find({“age”:{$gt:20}})</p>
+</blockquote>
+<p><strong> $ gte  查询name表中年龄大于等于20的数据</strong></p>
+<blockquote>
+<p>db.name.find({“age”:{$gte:20}})</p>
+</blockquote>
+<p><strong> $ lt  查询name表中年龄小于20的数据</strong></p>
+<blockquote>
+<p>db.name.find({“age”:{$lt:20}})</p>
+</blockquote>
+<p><strong> $ lte  查询name表中年龄小于等于20的数据</strong></p>
+<blockquote>
+<p>db.name.find({“age”:{$lte:20}})</p>
+</blockquote>
+<p><strong>$ or 查询name表中满足年龄等于20 或者21的数据</strong></p>
+<blockquote>
+<p>db.name.find({$or:[{age:20},{age:21}]})</p>
+</blockquote>
+<p>注意插入的age对象必须为number类型。我第一次插入的是字符串，就没查出来（滑稽）.</p>
+<h4 id="过滤查询"><a href="#过滤查询" class="headerlink" title="过滤查询"></a>过滤查询</h4><p><strong>包含查询</strong><br>查询表中name属性包含test的文档</p>
+<blockquote>
+<p>db.name.find({name:/test/})</p>
+</blockquote>
+<p><strong>包含头查询</strong><br>查询表中name属性开头包含’test’的文档</p>
+<blockquote>
+<p>db.name.find({name:/^test/})</p>
+</blockquote>
+<h4 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h4><p><strong>升序</strong></p>
+<blockquote>
+<p>db.name.find().sort({age:1})</p>
+</blockquote>
+<p><strong>降序</strong></p>
+<blockquote>
+<p>db.name.find().sort({age:-1})</p>
+</blockquote>
+<h4 id="限定查询条数"><a href="#限定查询条数" class="headerlink" title="限定查询条数"></a>限定查询条数</h4><p><strong>skip</strong></p>
+<p>限定起始查询条（从第五条开始查询）</p>
+<blockquote>
+<p>db.name.find().skip(5)</p>
+</blockquote>
+<p><strong>limit</strong></p>
+<p>限定查询5条（查询至第五条为止）</p>
+<blockquote>
+<p>db.name.find().limit(5);</p>
+</blockquote>
+<h4 id="文档操作-增、删、改"><a href="#文档操作-增、删、改" class="headerlink" title="文档操作 增、删、改"></a>文档操作 增、删、改</h4><h5 id="增"><a href="#增" class="headerlink" title="增"></a>增</h5><h6 id="insert-插入文档"><a href="#insert-插入文档" class="headerlink" title="insert 插入文档"></a>insert 插入文档</h6><p><strong>单条插入</strong></p>
+<blockquote>
+<p>db.name.insert({username:’test’})</p>
+</blockquote>
+<p><strong>批量插入</strong></p>
+<blockquote>
+<p>var query = [{‘username’:1},{‘username’:2}];<br>db.name.insert(query)</p>
+</blockquote>
+<p><strong>池插入</strong></p>
+<blockquote>
+<p>var query = [{‘username’:1},{‘username’:2}];<br>db.name.bathInsert(query);</p>
+</blockquote>
+<h6 id="save"><a href="#save" class="headerlink" title="save"></a>save</h6><p>save 与insert类似，insert插入时如果存在主键会报错，save插入如果存在会覆盖。效率比insert要低。</p>
+<h5 id="删"><a href="#删" class="headerlink" title="删"></a>删</h5><p><strong>删除指定文档</strong></p>
+<blockquote>
+<p>db.name.remove({‘userName’:1})</p>
+</blockquote>
+<p><strong>删除指定文档中的第一条</strong></p>
+<blockquote>
+<p>db.name.remove({‘userName’:1},{justOne:true})</p>
+</blockquote>
+<p><strong>删除所有文档</strong></p>
+<blockquote>
+<p>db.name.remove({})</p>
+</blockquote>
+<h5 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h5><p><strong>$set</strong></p>
+<blockquote>
+<p>db.name.update({‘userName’:1},{$set:{‘userName’:2}})</p>
+</blockquote>
+<p><strong>$inc</strong><br>自增 ,agree+=10</p>
+<blockquote>
+<p>db.name.update({userName:’test’},{$inc:{agree:10}})</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;新建/选择数据库&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;use test&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;显示数据库列表&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;show dbs&lt;/p&gt;
+&lt;/b
+    
+    </summary>
+    
+    
+      <category term="mongoDB" scheme="http://yoursite.com/tags/mongoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>webpack在项目里的应用（笔记）</title>
@@ -1014,49 +1174,6 @@
     
     
       <category term="足球 艺术" scheme="http://yoursite.com/tags/%E8%B6%B3%E7%90%83-%E8%89%BA%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo + Next 遇到的小坑</title>
-    <link href="http://yoursite.com/2016/11/09/Hexo%20+%20Next%20%E9%81%87%E5%88%B0%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
-    <id>http://yoursite.com/2016/11/09/Hexo + Next 遇到的小坑/</id>
-    <published>2016-11-09T06:24:35.000Z</published>
-    <updated>2017-01-28T06:05:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://7xjh3u.com1.z0.glb.clouddn.com/new-hexo-1.jpg" alt="alt text"></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>趁着热乎劲，把自己的坑记录下来。网上的教程N多，很详细，就不多说了。这篇就记录下自己遇到的小问题及几个常用命令。<br><a id="more"></a><!--more--></p>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>关于 hexo 的常用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot; #新建文章</div><div class="line">hexo new page &quot;pageName&quot; #新建页面</div><div class="line">hexo generate #生成静态页面至public目录</div><div class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy #将.deploy目录部署到GitHub</div></pre></td></tr></table></figure></p>
-<p>简写 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo n === hexo new，新建文章</div><div class="line">hexo g === hexo generate，用于生成静态文件</div><div class="line">hexo s === hexo server，本地预览</div><div class="line">hexo d === hexo deploy，用于将本地文件发布到github上</div></pre></td></tr></table></figure></p>
-<p>小坑：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">You should configure deployment settings <span class="keyword">in</span> _config.yml first!</div><div class="line"></div><div class="line">Available deployer plugins:</div><div class="line"></div><div class="line">For more help, you can check the online docs: http:<span class="comment">//hexo.io/</span></div></pre></td></tr></table></figure>
-<p>我的坑就是这个：</p>
-<p>引起的可能</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">   _config.yml 文件 少了一个空格的原因</div><div class="line"><span class="attr">   deploy:</span> </div><div class="line">	  type: git</div><div class="line">	  repository: http://github.com/miloers/miloers.github.io.git</div><div class="line">	  branch: master</div><div class="line">冒号后面都需要有一个空格的</div></pre></td></tr></table></figure>
-<p>我当然不是这种错，按别人教程走的，别人特意提起过。[害羞]<br>当我上传到github上，准备浏览时，一直显示404 found，尼玛，我都等了10多分钟，你就一直给我显示这个 [愤怒] [懵逼]。</p>
-<blockquote>
-<p>仓库名必须为 <a href="http://your_user_name.github.io" target="_blank" rel="external">http://your_user_name.github.io</a> 。<br>用我的举例：我的用户名为miloers ，而仓库名写的miloer。这样就不行，不行[委屈].<br>更多的问题可以去这里看看 <a href="https://www.zhihu.com/question/30670216" target="_blank" rel="external">来自知乎的小坑</a>。</p>
-</blockquote>
-<p>17.1.28(更新)</p>
-<p>起因：换了台电脑，然后再新的电脑配置博客嘛<br>过程：<br>我的方法可能比较蠢，但是比较简单。<br>1）先把所有的东西push到另一个仓库里<br>2）本地clone过来<br>3）安装模块<br>发生了错误：WTF？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ npm install</div><div class="line">npm WARN deprecated swig@1.4.2: This package is no longer maintained</div><div class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.0.0 (node_moduleschokidarnode_modulesfsevents):</div><div class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.0.17: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</div><div class="line">npm ERR! Windows_NT 6.1.7601</div><div class="line">npm ERR! argv &quot;D:\Node\node.exe&quot; &quot;D:\Node\node_modules\npm\bin\npm-cli.js&quot; &quot;install&quot;</div><div class="line">npm ERR! node v7.4.0</div><div class="line">npm ERR! npm v4.0.5</div><div class="line"></div><div class="line">npm ERR! shasum check failed for C:UsersdellAppDataLocalTempnpm-3568-bffa2b65registry.npmjs.orgyargs-yargs-3.5.4.tgz</div><div class="line">npm ERR! Expected: d8aff8f665e94c34bd259bdebd1bfaf0ddd35361</div><div class="line">npm ERR! Actual: 46f08eb94d7130ad575d5d58ccb38510ae532d9a</div><div class="line">npm ERR! From: https://registry.npmjs.org/ya...</div><div class="line">npm ERR!</div><div class="line">npm ERR! If you need help, you may report this error at:</div><div class="line">npm ERR! https://github.com/npm/npm/is...</div><div class="line"></div><div class="line">npm ERR! Please include the following file with any support request:npm ERR! F:mydatahexonpm-debug.log</div></pre></td></tr></table></figure></p>
-<p>上网问了一下，也没有解决方法<br>当时我的电脑在安装更新，然后报错了<br>之后重启了一下<br>莫名其妙就行了<br>不知道是不是和更新内容有关<br>Windows系统。。<br>一脸懵逼</p>
-<p>4）然后安装Next主题<br>因为clone过来时，内容都是空的<br>5）完成<br>回来准备试试这个<a href="https://formulahendry.github.io/2016/12/04/hexo-ci/" target="_blank" rel="external">Hexo的版本控制与持续集成</a><br>17.1.28(更新完)</p>
-<p>关于NEXT：</p>
-<p>至于NEXT主题，我想没有比它官方文档介绍的更完美的了。地址戳<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">这里这里</a>.</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://opiece.me/2015/04/09/hexo-guide/" target="_blank" rel="external">使用Hexo搭建个人博客(基于hexo3.0)</a><br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xjh3u.com1.z0.glb.clouddn.com/new-hexo-1.jpg&quot; alt=&quot;alt text&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;趁着热乎劲，把自己的坑记录下来。网上的教程N多，很详细，就不多说了。这篇就记录下自己遇到的小问题及几个常用命令。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="blog" scheme="http://yoursite.com/categories/blog/"/>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   
