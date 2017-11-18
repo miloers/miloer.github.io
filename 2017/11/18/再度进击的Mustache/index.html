@@ -1,0 +1,710 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js template," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Miloer の 闲言碎语" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="数据驱动模型，你们的业务页面是怎么生成的呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再度进击的Mustache ">
+<meta property="og:url" content="http://yoursite.com/2017/11/18/再度进击的Mustache/index.html">
+<meta property="og:site_name" content="Miloer の 闲言碎语">
+<meta property="og:description" content="数据驱动模型，你们的业务页面是怎么生成的呢？">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2414563-d8a1a2f8e1d26e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:updated_time" content="2017-11-18T04:52:55.761Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="再度进击的Mustache ">
+<meta name="twitter:description" content="数据驱动模型，你们的业务页面是怎么生成的呢？">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2414563-d8a1a2f8e1d26e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/18/再度进击的Mustache/"/>
+
+
+
+
+
+  <title> 再度进击的Mustache  | Miloer の 闲言碎语 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Miloer の 闲言碎语</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-share">
+          <a href="/share/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            分享
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/18/再度进击的Mustache/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Miloer">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://wss.globelinkcfs.com/wechat/export_lcl/old/img/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Miloer の 闲言碎语">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Miloer の 闲言碎语" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                再度进击的Mustache 
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-18T12:49:36+08:00">
+                2017-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据驱动模型，你们的业务页面是怎么生成的呢？</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2414563-d8a1a2f8e1d26e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="进击"><br><a id="more"></a><!--more--></p>
+<h3 id="Mustache初步的使用"><a href="#Mustache初步的使用" class="headerlink" title="Mustache初步的使用"></a>Mustache初步的使用</h3><p>关于<a href="https://github.com/janl/mustache.js" target="_blank" rel="external">Mustache</a> .<br>最早我是怎么使用的？出于什么目的使用的呢？</p>
+<p>接口返回一个类似于这样的数据。（简书随便抽了一个。）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;chapters&quot;:[&#123;&quot;title&quot;:&quot;《假三国》目录&quot;,&quot;slug&quot;:&quot;ddb4936a75d0&quot;,&quot;wordage&quot;:683&#125;,&#123;&quot;title&quot;:&quot;《假三国》：霸气的开场，走心的套路&quot;,&quot;slug&quot;:&quot;890d748caf26&quot;,&quot;wordage&quot;:1052&#125;,&#123;&quot;title&quot;:&quot;《假三国》：谁识英雄是白身？&quot;,&quot;slug&quot;:&quot;cc579990cbe2&quot;,&quot;wordage&quot;:1077&#125;,&#123;&quot;title&quot;:&quot;《假三国》：普通人身居高位的悲剧&quot;,&quot;slug&quot;:&quot;d4956542e231&quot;,&quot;wordage&quot;:1947&#125;,&#123;&quot;title&quot;:&quot;《假三国》：留得生命在，万事皆可为&quot;,&quot;slug&quot;:&quot;f28fc45f2737&quot;,&quot;wordage&quot;:1609&#125;,&#123;&quot;title&quot;:&quot;《假三国》：资历尚浅，瞧不起你又能怎样？&quot;,&quot;slug&quot;:&quot;545144530cd8&quot;,&quot;wordage&quot;:1393&#125;,&#123;&quot;title&quot;:&quot;《假三国》：曹操又没死，真可惜&quot;,&quot;slug&quot;:&quot;7ab36ad8419c&quot;,&quot;wordage&quot;:1445&#125;,&#123;&quot;title&quot;:&quot;《假三国》：身外之物，怀璧之诛&quot;,&quot;slug&quot;:&quot;a8dbc95f3289&quot;,&quot;wordage&quot;:1724&#125;,&#123;&quot;title&quot;:&quot;《假三国》：我躺在别人床上爱你&quot;,&quot;slug&quot;:&quot;1ee824581694&quot;,&quot;wordage&quot;:1745&#125;,&#123;&quot;title&quot;:&quot;《假三国》：为了“英雄”这个称号，我再一次杀了我爹&quot;,&quot;slug&quot;:&quot;38920c5fa608&quot;,&quot;wordage&quot;:1557&#125;,&#123;&quot;title&quot;:&quot;《假三国》：试图交友反结怨&quot;,&quot;slug&quot;:&quot;5a7f0ce7d786&quot;,&quot;wordage&quot;:1598&#125;,&#123;&quot;title&quot;:&quot;《假三国》：同为道义，太史慈出力，刘备捡便宜&quot;,&quot;slug&quot;:&quot;a67a83c396c4&quot;,&quot;wordage&quot;:1719&#125;,&#123;&quot;title&quot;:&quot;《假三国》：刘备得徐州，仅仅是人品好？&quot;,&quot;slug&quot;:&quot;2b5b168e18eb&quot;,&quot;wordage&quot;:1603&#125;,&#123;&quot;title&quot;:&quot;《假三国》：三国中论吃苦，我只服汉献帝&quot;,&quot;slug&quot;:&quot;eaa878009705&quot;,&quot;wordage&quot;:1799&#125;,&#123;&quot;title&quot;:&quot;《假三国》：张飞喝酒误事，错失徐州&quot;,&quot;slug&quot;:&quot;b52fe413af44&quot;,&quot;wordage&quot;:1561&#125;],&quot;total_count&quot;:32&#125;</div></pre></td></tr></table></figure></p>
+<p>假定我们想循环对应的title和 slug<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let str  = &apos;&apos;;</div><div class="line">for(let i;i&lt;total_count;i++)&#123;</div><div class="line">	 str+=&quot;标题：&quot;+chapters[i].title+&quot;slug:&quot;+chapters[i].slug;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个循坏出来是没有任何样式的，项目里还要把这些做样式啊。 在流程里又粘合了一堆这个样式，甚至还有一些attr属性什么的，想想就恶心。</p>
+<p>就是在这个基础上用上了Mustache。<br>后台定义一个模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;#data&#125;&#125;</div><div class="line">  &lt;div class=&quot;title&quot;&gt;</div><div class="line">	  &lt;span class=&quot;titleText&quot;&gt;&#123;&#123;title&#125;&#125;&lt;span&gt;</div><div class="line"> &lt;/div&gt;</div><div class="line"> &lt;div class=&quot;slug&quot;&gt;</div><div class="line">	 &lt;span class=&quot;slugText&quot;&gt;&#123;&#123;slug&#125;&#125;&lt;span&gt;</div><div class="line"> &lt;/div&gt;</div><div class="line">&#123;&#123;/data&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>只需要调用Mustache.to_html(数据，模板)就可以生成对应的HTML了。</p>
+<p>诶，这个最起码不耦合在一起了，不显得黏黏糊糊了。</p>
+<h3 id="进步一点的Mustache"><a href="#进步一点的Mustache" class="headerlink" title="进步一点的Mustache"></a>进步一点的Mustache</h3><p>当然我们的数据不可能每次都是这种规律性质的。</p>
+<p>假如返回类似于这种<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;</div><div class="line">    mobile:&quot;f23132131231&quot;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">   QQ:&quot;123132131&quot;</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">   wechat:&quot;sfsdfas&quot;</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>这种数据怎么办?</p>
+<p>这么写的【捂脸】<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> &lt;div class=&quot;mobile&quot;&gt;</div><div class="line">  &lt;span class=&quot;mobileText&quot;&gt;&#123;&#123;mobile&#125;&#125;&lt;span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;QQ&quot;&gt;</div><div class="line"> &lt;span class=&quot;QQText&quot;&gt;&#123;&#123;QQ&#125;&#125;&lt;span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;wechat&quot;&gt;</div><div class="line"> &lt;span class=&quot;wechatText&quot;&gt;&#123;&#123;wechat&#125;&#125;&lt;span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>我们又做了一些看似重复的工作，但是他们返回的值的key是不同的啊。</p>
+<p>试想一下，我们假如有一个初始的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">const DATA =[&#123;</div><div class="line">	id:&quot;wechat&quot;,</div><div class="line">	name:&quot;wechat&quot;,</div><div class="line">	...</div><div class="line">&#125;,&#123;</div><div class="line">	id:&quot;QQ&quot;,</div><div class="line">	name:&quot;QQ&quot;,</div><div class="line">	...</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">	id:&quot;mobile&quot;,</div><div class="line">	name:&quot;mobile&quot;,</div><div class="line">	...</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>这里…可以是其他初始化的属性。<br>我们返回数据后，通过返回的key值，动态的往DATA这个初始的数据里插入对象的value属性。</p>
+<p>这时我的模板就可以变成这样了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;#data&#125;&#125;</div><div class="line">  &lt;div class=&quot;统一样式&quot;&gt;</div><div class="line">	&lt;span class=&quot;text&quot;&gt;&#123;&#123;name&#125;&#125;&lt;span&gt; </div><div class="line">    &lt;span class=&quot;text&quot;&gt;&#123;&#123;value&#125;&#125;&lt;span&gt;</div><div class="line"> &lt;/div&gt;</div><div class="line">&#123;&#123;/data&#125;&#125;</div></pre></td></tr></table></figure>
+<p>这样又是批处理数据了。这样模板就可以复用了，不用像刚刚那样生成一堆处理数据的模板文件。</p>
+<p>同理，当我们主动生成数据时，通过刚刚那个DATA生成就可以了。（被动生成，这里指接受数据后，根据数据生成Html文件）。</p>
+<p>其实做到这里，我觉得关键的部分在于初始的DATA，然后根据DATA，来画出对应的可复用的模板。<br>如果DATA，写不好的话，模板文件就会很多，而且重复的很多，很乱。<br>换句话说就是一将无能，累死三军。<br>典型的案例就是文图拉，意大利就是这种境况。造成的结果就是没进世界杯。</p>
+<h3 id="再进步一点的Mustache"><a href="#再进步一点的Mustache" class="headerlink" title="再进步一点的Mustache"></a>再进步一点的Mustache</h3><p>做到这里，我觉得还不错，但是结合业务又发现一个问题。</p>
+<p>这个问题，是由主动生成数据带来的。</p>
+<p>我们业务里不可能都是 Input 一种文件吧，</p>
+<p>举一个例子，我们注册时，</p>
+<p>假如有昵称，性别，邮箱，是否有推荐人。<br>在这个信息里  Input 对应（ 昵称，邮箱）。Select 对应（性别） 。checkBox对应（是否有推荐人）。</p>
+<p>你总不能摘着弄吧？批量自动生成数据顺序变成 昵称 邮箱 性别 是否有推荐人。 性别变到邮箱后面了。</p>
+<p>你这么弄上去的话，信不信产品一口狗血吐你脸上。</p>
+<p>那怎么办？</p>
+<p>把模板单一化，让每一个元素分发到模板挨个生成？</p>
+<p>说人话！！</p>
+<p>还记得在上一小节最后，我自己总结，最重要的就是DATA这个驱动模板的数据了，类似于将的功能。</p>
+<p><strong>在初始化的DATA里，你可以设置一个对应的模板属性，当我们生成HTML时，数组的每一个元素挨个遍历，就去找这个模板，然后生成HTML。</strong></p>
+<p>就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">const DATA =[&#123;</div><div class="line">	id:&quot;wechat&quot;,</div><div class="line">	name:&quot;wechat&quot;,</div><div class="line">	tpl:&quot;commonInput&quot;</div><div class="line">	...</div><div class="line">&#125;,&#123;</div><div class="line">	id:&quot;sex&quot;,</div><div class="line">	name:&quot;sex&quot;,</div><div class="line">	tpl:&quot;commonSelect&quot;</div><div class="line">	...</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">	id:&quot;mobile&quot;,</div><div class="line">	name:&quot;mobile&quot;,</div><div class="line">	tpl:&quot;commonInput&quot;</div><div class="line">	...</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">	id:&quot;yes&quot;,</div><div class="line">	name:&quot;yes&quot;,</div><div class="line">	tpl:&quot;commonCheckBox&quot;</div><div class="line">	...</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>这个是节选挨个生成模板的代码 ,通过reduce累加Html,<br>两个参数分别是初始化的DATA和模板文件的key值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">reduceHTML(array, attr) &#123;</div><div class="line">     let todo = new dynamicCreateData();</div><div class="line">      let html = array.reduce(function (prev, cur) &#123;</div><div class="line">         todo.regString(cur[attr]);</div><div class="line">          temp = Mustache.to_html(eval(cur[attr]), cur);</div><div class="line">           return prev + temp;</div><div class="line">      &#125;, &apos;&apos;)</div><div class="line">      return html;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Mustache 还有很多其他的功能，这里只是简单把业务里用到的一个功能，纵向的说说，我想用Mustache做到这里，大部分需求应该都能满足了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js-template/" rel="tag"># js template</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/03/mongoDB初探-基本命令/" rel="next" title="mongoDB初探 基本命令">
+                <i class="fa fa-chevron-left"></i> mongoDB初探 基本命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://wss.globelinkcfs.com/wechat/export_lcl/old/img/avatar.jpg"
+               alt="Miloer" />
+          <p class="site-author-name" itemprop="name">Miloer</p>
+          <p class="site-description motion-element" itemprop="description">一个脱离高级趣味的人.</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mustache初步的使用"><span class="nav-number">1.</span> <span class="nav-text">Mustache初步的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进步一点的Mustache"><span class="nav-number">2.</span> <span class="nav-text">进步一点的Mustache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再进步一点的Mustache"><span class="nav-number">3.</span> <span class="nav-text">再进步一点的Mustache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Miloer</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
